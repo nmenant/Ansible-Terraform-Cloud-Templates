@@ -14,6 +14,6 @@ Right now you have 3 different templates available to deploy web applications:
 * CFT-2WebServers-Security-DVWA: this template will deploy 2 DVWA web servers. DVWA stands for Dawn Vulnerable 
     Web Application. More information about this web application can be found here: <http://www.dvwa.co.uk/>
 
-**The Hackazon and DVWA web application are vulnerable to attack on purpose.
+**The Hackazon and DVWA web application are vulnerable to attacks. It is on PURPOSE.
     You shouldn't expose it openly. You MUST make sure that you will specify a USERIP in the template to block access 
     to this application to other users if you plan to expose this to the web. DO IT AT YOUR OWN RISK**
