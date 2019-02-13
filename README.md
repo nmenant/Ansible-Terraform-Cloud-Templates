@@ -4,7 +4,7 @@ AWS Cloud Formation examples
 This repo contains some generic Cloud Formation template for AWS. 
 
 Templates
-------------
+---------
 
 Right now you have 3 different templates available to deploy web applications: 
 
