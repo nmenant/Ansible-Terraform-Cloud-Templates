@@ -117,7 +117,7 @@
        ]
      }
    },
-   "WebServer1": {
+   "WebServerDVWA1": {
      "Type": "AWS::EC2::Instance",
      "Metadata": {
        "AWS::CloudFormation::Init" : {
@@ -172,7 +172,7 @@
          },
          {
            "Key": "Name",
-           "Value":"UbuntuWebServer1"
+           "Value":"WebServer-DVWA1"
          }
        ],
        "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
@@ -217,7 +217,7 @@
          }
      }
    },
-   "WebServer2": {
+   "WebServerDVWA2": {
        "Type": "AWS::EC2::Instance",
        "Metadata": {
          "AWS::CloudFormation::Init" : {
@@ -272,7 +272,7 @@
            },
            {
              "Key": "Name",
-             "Value":"UbuntuWebServer2"
+             "Value":"WebServerDVWA2"
            }
          ],
          "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
