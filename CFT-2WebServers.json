@@ -126,8 +126,8 @@
               "apt" : {
                 "apache2": [],
                 "mysql-server": [],
-                "php": [],
-                "php-mysql": []
+                "php5": [],
+                "libapache2-mod-php5": []
               }
             },
             "commands" : {
