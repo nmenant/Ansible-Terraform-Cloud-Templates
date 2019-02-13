@@ -322,6 +322,14 @@
    "Region" : {
      "Description" : "AWS Region",
      "Value" : { "Ref" : "AWS::Region" }
-   }
+   },
+   "Admin User": {
+      "Description" : "Admin User",
+      "Value" : "admin"
+   },
+   "Admin Password": {
+    "Description" : "Admin password",
+    "Value" : "hackmesilly"
+ } 
  }
 }
