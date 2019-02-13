@@ -184,7 +184,7 @@
            "easy_install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\n",
            "cfn-init -v ",
            "         --stack ", { "Ref" : "AWS::StackName" },
-           "         --resource WebServerDVWA21",
+           "         --resource WebServerDVWA1",
            "         --region ", { "Ref" : "AWS::Region" },
            "\n",
            "# Signal the status from cfn-init\n",
