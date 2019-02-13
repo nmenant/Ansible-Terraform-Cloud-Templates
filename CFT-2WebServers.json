@@ -126,8 +126,9 @@
               "apt" : {
                 "apache2": [],
                 "mysql-server": [],
-                "php5": [],
-                "libapache2-mod-php5": []
+                "php": [],
+                "php-mysql": [],
+                "libapache2-mod-php": []
               }
             },
             "commands" : {
@@ -138,7 +139,7 @@
               "c_setup_docker3": {"command": "sudo apt-get -y update"},
               "c_setup_docker4": {"command": "sudo apt-get install -y docker-ce"},
               "c_setup_docker5": {"command": "usermod -aG docker ubuntu"} 
-              }
+            }
           }
         }
       },
@@ -234,7 +235,8 @@
                   "apache2": [],
                   "mysql-server": [],
                   "php": [],
-                  "php-mysql": []
+                  "php-mysql": [],
+                  "libapache2-mod-php": []
                 }
               },
               "commands" : {
