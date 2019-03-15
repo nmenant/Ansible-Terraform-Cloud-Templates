@@ -33,3 +33,8 @@ variable "instance_count" {
     description = "How many instances do you want to start"
     default = "2"
 }
+
+variable "tag_identifier" {
+    description = "tag assigned to all the generated instances"
+    default = "Nico Terraform"
+}
