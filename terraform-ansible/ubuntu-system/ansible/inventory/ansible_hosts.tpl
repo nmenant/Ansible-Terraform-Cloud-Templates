@@ -1,2 +1,0 @@
-[system]
-${system_hosts}

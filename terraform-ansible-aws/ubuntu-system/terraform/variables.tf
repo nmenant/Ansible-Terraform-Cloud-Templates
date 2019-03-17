@@ -27,7 +27,7 @@ variable "subnet_id" {
 }
 variable "AllowedIPs" {
     description = "Public IPs used to access your instances"
-    default = "50.206.82.175/32"
+    default = "90.79.84.177/32"
 }
 variable "instance_count" {
     description = "How many instances do you want to start"
