@@ -1,5 +1,5 @@
 resource "aws_security_group" "ubuntu_sg" {
-    name = "${var.instance_name}_sg"
+    name = "${var.ubuntu_instance_name}_sg"
     vpc_id = "${var.vpc_id}"
     description = "Accept incoming connections."
 
@@ -39,6 +39,6 @@ resource "aws_security_group" "ubuntu_sg" {
     }
 
     tags {
-        Name = "${var.instance_name}_sg"
+        Name = "${var.ubuntu_instance_name}_sg"
     }
 }
