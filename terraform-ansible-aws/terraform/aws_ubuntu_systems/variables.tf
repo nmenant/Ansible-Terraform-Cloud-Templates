@@ -27,7 +27,7 @@ variable "ubuntu_subnet_id" {
 }
 variable "AllowedIPs" {
     description = "Public IPs used to access your instances"
-    default = "90.79.84.177/32"
+    default = "92.151.104.142/32"
 }
 variable "ubuntu_instance_count" {
     description = "How many ubuntu instances do you want to start"

@@ -1,7 +1,6 @@
 [aws_ubuntu_systems]
 #<your_systems_ips> 
 
-
 [aws_ubuntu_systems:vars]
 ansible_python_interpreter=/usr/bin/python3
 ansible_user=ubuntu
