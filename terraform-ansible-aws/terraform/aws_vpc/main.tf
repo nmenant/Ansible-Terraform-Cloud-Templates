@@ -70,7 +70,7 @@ resource "aws_route_table" "public-route-table" {
   }
 }
 
-# Assign the route table to the public Subnet
+# Assign the route table to the public Subnets
 resource "aws_route_table_association" "public1-rt" {
   subnet_id = "${aws_subnet.public-subnet1.id}"
   route_table_id = "${aws_route_table.public-route-table.id}"
@@ -78,6 +78,17 @@ resource "aws_route_table_association" "public1-rt" {
 
 resource "aws_route_table_association" "public2-rt" {
   subnet_id = "${aws_subnet.public-subnet2.id}"
+  route_table_id = "${aws_route_table.public-route-table.id}"
+}
+
+# Assign the route table to the private Subnets
+resource "aws_route_table_association" "private1-rt" {
+  subnet_id = "${aws_subnet.private-subnet1.id}"
+  route_table_id = "${aws_route_table.public-route-table.id}"
+}
+
+resource "aws_route_table_association" "private2-rt" {
+  subnet_id = "${aws_subnet.private-subnet2.id}"
   route_table_id = "${aws_route_table.public-route-table.id}"
 }
 

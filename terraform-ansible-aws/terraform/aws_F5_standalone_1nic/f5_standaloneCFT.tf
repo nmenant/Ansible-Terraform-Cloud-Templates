@@ -6,7 +6,7 @@ resource "aws_cloudformation_stack" "f5-standalone-hourly" {
     #NETWORKING CONFIGURATION
 
     Vpc                          = "${var.vpc_id}"
-    subnet1Az1                   = "${var.f5_subnet_id1}"
+    subnet1Az1                   = "${var.f5_subnet1_id}"
     
     managementGuiPort = "${var.bigip_https_port}"
 
