@@ -41,5 +41,5 @@ variable "key_path" {
 
 variable "AllowedIPs" {
     description = "Public IPs used to access your instances"
-    default = "92.151.104.142/32"
+    default = "109.7.65.101/32"
 }

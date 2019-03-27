@@ -1,0 +1,14 @@
+[aws_ubuntu_systems]
+
+
+[F5_systems]
+
+
+[aws_ubuntu_systems:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ubuntu
+#ansible_ssh_private_key_file=/Users/menant/.ssh/id_rsa
+
+[F5_systems:vars]
+ansible_python_interpreter=/Users/menant/projects/python-virtualenv/myansible/bin/python
+ansible_user=admin
