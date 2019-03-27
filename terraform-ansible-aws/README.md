@@ -14,8 +14,8 @@ Remarks
 * *terraform output* will give you the relevant public IPs related to your infrastructure. Put those IPs in your ansible/playbooks/inventory/hosts file
 * create a file in ansible/playbooks/group_vars called *F5_systems*. Inside this file, put the admin password you want to setup on your BIG-IP this way :
 
-``
+```
 ADMIN_PASSWORD: "XXXXX"
-``
+```
 
 * update your ansible roles accordingly and then you can run *ansible-playbook -i inventory/hosts site.yml*
