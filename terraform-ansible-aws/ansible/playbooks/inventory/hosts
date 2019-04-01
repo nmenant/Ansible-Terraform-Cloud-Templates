@@ -1,9 +1,9 @@
 [aws_ubuntu_systems]
-34.242.172.212
-34.240.235.69
+34.245.15.81
+34.242.2.7
 
 [F5_systems]
-63.35.22.129
+99.81.9.92 vs_ip=10.10.10.130
 
 [aws_ubuntu_systems:vars]
 ansible_python_interpreter=/usr/bin/python3

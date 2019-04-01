@@ -22,11 +22,6 @@ variable "ubuntu_instance_name" {
     default = "nico_ubuntu"
 }
 
-#variable "ubuntu_subnet_id" {
-#    description = "ID of the subnet to use for the ubuntu instances"
-#    default = "subnet-069f7f335772d2490"
-#}
-
 variable "ubuntu_instance_count" {
     description = "How many ubuntu instances do you want to start per AZ"
     default = "1"

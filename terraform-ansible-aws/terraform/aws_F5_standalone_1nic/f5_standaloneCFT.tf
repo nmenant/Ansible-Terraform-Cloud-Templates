@@ -1,5 +1,5 @@
 resource "aws_cloudformation_stack" "f5-standalone-hourly" {
-  name         = "${var.owner}-terraform-f5-standalone"
+  name         = "${var.owner}-f5-standalone"
   capabilities = ["CAPABILITY_IAM"]
 
   parameters {
