@@ -16,7 +16,7 @@ Remarks - Terraform
 Remarks - Ansible
 -----------------
 
-* update ansible/inventory/hosts with your ubuntu/F5 public ips
+* update ansible/inventory/hosts with your ubuntu/F5 public ips. Setup *vs_ip* in the hosts file with the PRIVATE IP of your BIG-IP. 
 * update playbooks/group_vars/vars with your ubuntu PRIVATE IPs (variable LIST_AS3_POOL_SERVERS)
 * you have a file called ansible/playbooks/group_vars/F5_systems/vault. You need to create this file yourself to store your admin password.  Inside this file, put the admin password you want to setup on your BIG-IP this way :
 
