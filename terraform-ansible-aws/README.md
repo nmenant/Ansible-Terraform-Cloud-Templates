@@ -11,13 +11,13 @@ Remarks - Terraform
 * make sure that your AWS credentials are set on your system using Terraform / Ansible (.aws/credentials for example on mac)
 * update terraform/variables.tf to deploy the infrastructure components acordingly
 * do *terraform get* / *terraform plan* / *terraform apply* to deploy your infrastructure
-* *terraform output* will give you the relevant public IPs related to your infrastructure. Put those IPs in your ansible/playbooks/inventory/hosts file
+* *terraform output* will give you the relevant public IPs related to your infrastructure.
 
 Remarks - Ansible
 -----------------
 
-* update ansible/inventory/hosts with your ubuntu/F5 public ips. Setup *vs_ip* in the hosts file with the PRIVATE IP of your BIG-IP. 
-* update playbooks/group_vars/vars with your ubuntu PRIVATE IPs (variable LIST_AS3_POOL_SERVERS)
+* ansible/inventory/hosts will be created automatically by Terraform. *vs_ip* in the hosts file is the PRIVATE IP of your BIG-IP.
+* playbooks/group_vars/F5_systems/vars will list your ubuntu PRIVATE IPs (variable LIST_AS3_POOL_SERVERS). This is created automatically by Terraform
 * you have a file called ansible/playbooks/group_vars/F5_systems/vault. You need to create this file yourself to store your admin password.  Inside this file, put the admin password you want to setup on your BIG-IP this way :
 
 ```

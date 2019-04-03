@@ -1,9 +1,9 @@
 [aws_ubuntu_systems]
-34.245.15.81
-34.242.2.7
+${aws_ubuntu_data}
 
 [F5_systems]
-99.81.9.92 vs_ip=10.10.10.130
+#Must be in the form of <public IP> vs_ip=<private ip of the F5>
+${aws_F5_public_ip} vs_ip=${aws_F5_private_ip}
 
 [aws_ubuntu_systems:vars]
 ansible_python_interpreter=/usr/bin/python3

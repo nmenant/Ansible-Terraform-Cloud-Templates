@@ -35,3 +35,27 @@ module "aws_ubuntu_systems" {
   vpc_id =  "${module.aws_vpc.vpc_default_id}"
   AllowedIPs = "${var.AllowedIPs}"
 }
+
+data  "template_file" "ansible_inventory" {
+    template = "${file("./templates/ansible_inventory.tpl")}"
+    vars {
+        aws_F5_public_ip = "${module.aws_f5_standalone.f5_public_ip}" 
+        aws_F5_private_ip = "${module.aws_f5_standalone.f5_private_ip}"
+        aws_ubuntu_data = "${join("\n", "${module.aws_ubuntu_systems.ubuntu_public_ips}")}"
+    }
+}
+resource "local_file" "ansible_inventory_file" {
+  content  = "${data.template_file.ansible_inventory.rendered}"
+  filename = "../ansible/playbooks/inventory/hosts"
+}
+
+data  "template_file" "ansible_f5_vars" {
+    template = "${file("./templates/ansible_f5_vars.tpl")}"
+    vars {
+        aws_f5_pool_members = "${join("','", "${module.aws_ubuntu_systems.ubuntu_private_ips}")}"
+    }
+}
+resource "local_file" "ansible_f5_vars_file" {
+  content  = "${data.template_file.ansible_f5_vars.rendered}"
+  filename = "../ansible/playbooks/group_vars/F5_systems/vars"
+}
