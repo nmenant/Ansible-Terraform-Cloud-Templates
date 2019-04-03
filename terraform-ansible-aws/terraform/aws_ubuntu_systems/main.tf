@@ -31,5 +31,3 @@ resource "aws_instance" "ubuntu_instance_az2" {
     System = "Terraform"
   }
 }
-
-
