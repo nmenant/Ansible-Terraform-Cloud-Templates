@@ -27,6 +27,10 @@ variable "ubuntu_instance_count" {
     default = "2"
 }
 
+variable "ubuntu_username" {
+  description = "name of the user that will be created on the instance"
+  default = "azureuser"
+}
 variable "azure_region" {
   type = "string"
 }

@@ -5,14 +5,8 @@ variable "owner" {
 
 variable "project_name" {
   description = "Name of the project related to this VPC"
-  default = "TestTerraform"
+  default = "Terraform"
 }
-
-variable "s3_aws_region" {
-  description = "region for the S3 bucket used to store the state. eu-west-3 is Paris"
-  default = "eu-west-3"
-}
-
 variable "azure_az1" {
   default = "1"
 }
@@ -21,15 +15,6 @@ variable "azure_az2" {
   default = "2"
 }
 
-variable "s3_bucket" {
-  description = "name of the S3 bucket"
-  default = "nmenant-private"
-}
-
-variable "s3_path" {
-  description = "Path in the bucket to store the terraform state"
-  default = "terraform/aws"
-}
 ##
 ## List of regions : francecentral, westeurope, westus2
 ## Can get the list of region with the command: az account list-locations
@@ -45,5 +30,5 @@ variable "public_key" {
 
 variable "AllowedIPs" {
     description = "Public IPs used to access your instances"
-    default = "109.190.253.11/32"
+    default = "109.7.65.102/32"
 }
