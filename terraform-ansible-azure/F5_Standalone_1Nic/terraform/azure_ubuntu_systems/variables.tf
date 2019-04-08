@@ -24,27 +24,26 @@ variable "ubuntu_instance_name" {
 
 variable "ubuntu_instance_count" {
     description = "How many ubuntu instances do you want to start per AZ"
-    default = "1"
+    default = "2"
 }
 
-variable "tag_identifier" {
-    description = "tag assigned to all the generated instances"
-    default = "Nico Terraform"
-}
-
-variable "aws_region" {
+variable "azure_region" {
   type = "string"
 }
 variable "ubuntu_subnet_id_az1" {
   type = "string"
 }
+variable "private_subnet1_id" {
+  type = "string"
+}
+
 variable "ubuntu_subnet_id_az2" {
   type = "string"
 }
-variable "key_name" {
+variable "public_key" {
   type = "string"
 }
-variable "vpc_id" {
+variable "azure_rg_name" {
   type = "string"
 }
 variable "AllowedIPs" {
@@ -58,12 +57,12 @@ variable "owner" {
 variable "public_subnet1_cidr" {
   type = "string"
 }
-variable "public_subnet2_cidr" {
-  type = "string"
-}
+#variable "public_subnet2_cidr" {
+#  type = "string"
+#}
 variable "private_subnet1_cidr" {
   type = "string"
 }
-variable "private_subnet2_cidr" {
-  type = "string"
-}
+#variable "private_subnet2_cidr" {
+#  type = "string"
+#}
