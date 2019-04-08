@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "azure_rg" {
-  name = "NicoM-${var.owner}-RG"
+  name = "${var.owner}-RG"
   location = "${var.azure_region}"
   tags {
     environment = "${var.owner}"

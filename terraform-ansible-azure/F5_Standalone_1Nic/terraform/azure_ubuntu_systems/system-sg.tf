@@ -17,7 +17,7 @@ resource "azurerm_network_security_group" "azure_ubuntu_sg" {
 
     security_rule {
         name                       = "HTTP"
-        priority                   = 1001
+        priority                   = 1002
         direction                  = "Inbound"
         access                     = "Allow"
         protocol                   = "Tcp"
@@ -29,7 +29,7 @@ resource "azurerm_network_security_group" "azure_ubuntu_sg" {
 
     security_rule {
         name                       = "HTTPS"
-        priority                   = 1001
+        priority                   = 1003
         direction                  = "Inbound"
         access                     = "Allow"
         protocol                   = "Tcp"
@@ -37,19 +37,5 @@ resource "azurerm_network_security_group" "azure_ubuntu_sg" {
         destination_port_range     = "443"
         source_address_prefixes      = ["${var.AllowedIPs}","${var.public_subnet1_cidr}","${var.private_subnet1_cidr}"]  
         destination_address_prefix = "*"
-    }
-    security_rule {
-        name                       = "ICMP"
-        priority                   = 1001
-        direction                  = "Inbound"
-        access                     = "Allow"
-        protocol                   = "*"
-        source_port_range          = "*"
-        destination_port_range     = "*"
-        source_address_prefixes      = ["${var.AllowedIPs}","${var.public_subnet1_cidr}","${var.private_subnet1_cidr}"]  
-        destination_address_prefix = "*"
-    }
-    tags {
-        environment = "${var.owner}"
     }
 }

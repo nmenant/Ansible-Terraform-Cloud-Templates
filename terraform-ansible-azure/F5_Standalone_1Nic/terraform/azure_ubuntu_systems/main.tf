@@ -4,7 +4,7 @@ resource "azurerm_public_ip" "ubuntu_az1_publicips" {
     name                         = "${var.owner}-${var.ubuntu_instance_name}-az1-public-ip-${format("%02d", count.index+1)}"
     location                     = "${var.azure_region}"
     resource_group_name          = "${var.azure_rg_name}"
-    allocation_method            = "Dynamic"
+    allocation_method            = "Static"
 
     tags {
         environment = "${var.owner}"
@@ -16,7 +16,7 @@ resource "azurerm_public_ip" "ubuntu_az2_publicips" {
     name                         = "${var.owner}-${var.ubuntu_instance_name}-az2-public-ip-${format("%02d", count.index+1)}"
     location                     = "${var.azure_region}"
     resource_group_name          = "${var.azure_rg_name}"
-    allocation_method            = "Dynamic"
+    allocation_method            = "Static"
 
     tags {
         environment = "${var.owner}"
