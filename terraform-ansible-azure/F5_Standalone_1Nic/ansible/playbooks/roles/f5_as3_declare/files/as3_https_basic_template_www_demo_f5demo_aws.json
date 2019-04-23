@@ -17,7 +17,7 @@
                 "serviceMain": {
                     "class": "Service_HTTPS",
                     "virtualAddresses": [
-                        "10.10.10.137"
+                        "10.10.10.4"
                     ],
                     "snat": "auto",
                     "pool": "pool_www_demo_f5demo_aws",
@@ -31,7 +31,7 @@
                     "members": [
                         {
                             "servicePort": 80,
-                            "serverAddresses": ['10.10.20.91','10.10.21.209']
+                            "serverAddresses": ['10.10.20.5','10.10.20.4']
                         }
                     ]
                 },
