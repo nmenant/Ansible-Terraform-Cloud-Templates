@@ -1,18 +1,11 @@
 variable "owner" {
   description = "Name of the owner of this deployment (no space)"
-  default = "NicoM"
+  default     = "NicoM"
 }
 
 variable "project_name" {
   description = "Name of the project related to this VPC"
-  default = "Terraform"
-}
-variable "azure_az1" {
-  default = "1"
-}
-
-variable "azure_az2" {
-  default = "2"
+  default     = "Terraform"
 }
 
 ##
@@ -22,13 +15,51 @@ variable "azure_az2" {
 variable "azure_region" {
   default = "francecentral"
 }
-
+variable "AllowedIPs" {
+  description = "Public IPs used to access your instances"
+  default     = "90.120.18.213/32"
+}
 variable "public_key" {
   description = "SSH Public Key"
-  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCbfw73VHrRi9M+PlzpEW1ROrQkVYbIicoMrNeFHhgLc5aR4FOMvkUh924OcAvnalTASw0KSNAM7CaoSFcE1F/zPTHUnwCY/4liS9qenBeHBqeH1K7aBlaOb0V36zdlnUqRUzq/tL5J4TZkSyBntcKjRKlksxJrsPHvJSs/l36ryqmtyhzi5tLgnEvAKq8NCowpJKn2tornN52cYrf6JJhHRrQp/Cd5b5NXvAkde0mtsqkq6kwFSJwXr1+A2BxmabApDXSq0e0f5pjp0sXBSLweIWqHtFHXY53LGUBwsqvMiL4ijdgRNLTb9OWMtL4Pxy8qjC7Hsxb4iVPFZ9PmDJT3"
+  default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCbfw73VHrRi9M+PlzpEW1ROrQkVYbIicoMrNeFHhgLc5aR4FOMvkUh924OcAvnalTASw0KSNAM7CaoSFcE1F/zPTHUnwCY/4liS9qenBeHBqeH1K7aBlaOb0V36zdlnUqRUzq/tL5J4TZkSyBntcKjRKlksxJrsPHvJSs/l36ryqmtyhzi5tLgnEvAKq8NCowpJKn2tornN52cYrf6JJhHRrQp/Cd5b5NXvAkde0mtsqkq6kwFSJwXr1+A2BxmabApDXSq0e0f5pjp0sXBSLweIWqHtFHXY53LGUBwsqvMiL4ijdgRNLTb9OWMtL4Pxy8qjC7Hsxb4iVPFZ9PmDJT3"
+}
+## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
+variable DO_onboard_URL	{ 
+  default = "https://github.com/garyluf5/f5tools/raw/master/f5-declarative-onboarding-1.3.0-4.noarch.rpm"
 }
 
-variable "AllowedIPs" {
-    description = "Public IPs used to access your instances"
-    default = "109.7.65.102/32"
+## Please check and update the latest AS3 URL from https://github.com/F5Networks/f5-appsvcs-extension/releases/latest 
+variable AS3_URL { 
+  default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.10.0/f5-appsvcs-3.10.0-5.noarch.rpm" 
+}
+
+variable "azure_az1" {
+  default = "1"
+}
+
+variable "azure_az2" {
+  default = "2"
+}
+
+
+
+
+variable "f5_instance_type" {
+  description = "instance type for F5 VM to be deployed"
+  default     = "Standard_DS2_v2"
+}
+
+variable "f5_version" {
+  description = "BIG-IP Version"
+  default     = "latest"
+}
+
+variable "f5_image_name" {
+  description = "BIG-IP Image name"
+  default     = "f5-bigip-virtual-edition-200m-best-hourly"
+}
+
+variable "f5_product_name" {
+  description = "BIG-IP product name"
+  default     = "f5-big-ip-best"
 }

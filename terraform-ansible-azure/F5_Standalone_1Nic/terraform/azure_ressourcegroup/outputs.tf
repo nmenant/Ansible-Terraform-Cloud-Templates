@@ -3,6 +3,12 @@ output "azure_rg_name" {
   value = "${azurerm_resource_group.azure_rg.name}"
 }
 
+output "network_name" {
+  value = "${azurerm_virtual_network.azurerm_virtualnet.name}"
+}
+output "public_subnet1_name" {
+  value = "${azurerm_subnet.azurerm_publicsubnet1.name}"
+}
 output "public_subnet1_id" {
   value = "${azurerm_subnet.azurerm_publicsubnet1.id}"
 }
