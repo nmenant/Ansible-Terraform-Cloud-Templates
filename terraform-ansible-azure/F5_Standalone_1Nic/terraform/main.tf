@@ -63,13 +63,13 @@ resource "local_file" "ansible_inventory_file" {
   filename = "../ansible/playbooks/inventory/hosts"
 }
 
-#data  "template_file" "ansible_f5_vars" {
-#    template = "${file("./templates/ansible_f5_vars.tpl")}"
-#    vars {
-#        aws_f5_pool_members = "${join("','", "${module.aws_ubuntu_systems.ubuntu_private_ips}")}"
-#    }
-#}
-#resource "local_file" "ansible_f5_vars_file" {
-#  content  = "${data.template_file.ansible_f5_vars.rendered}"
-#  filename = "../ansible/playbooks/group_vars/F5_systems/vars"
-#}
+data  "template_file" "ansible_f5_vars" {
+  template = "${file("./templates/ansible_f5_vars.tpl")}"
+  vars {
+    azure_f5_pool_members = "${join("','", "${module.azure_ubuntu_systems.ubuntu_private_ips}")}"
+  }
+}
+resource "local_file" "ansible_f5_vars_file" {
+  content  = "${data.template_file.ansible_f5_vars.rendered}"
+  filename = "../ansible/playbooks/group_vars/F5_systems/vars"
+}
