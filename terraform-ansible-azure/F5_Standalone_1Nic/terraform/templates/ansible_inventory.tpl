@@ -7,7 +7,7 @@ ${azure_F5_public_ip} vs_ip=${azure_F5_private_ip}
 
 [azure_ubuntu_systems:vars]
 ansible_python_interpreter=/usr/bin/python3
-ansible_user=ubuntu
+ansible_user=azureuser
 
 [F5_systems:vars]
 ansible_python_interpreter=/Users/menant/projects/python-virtualenv/myansible/bin/python
