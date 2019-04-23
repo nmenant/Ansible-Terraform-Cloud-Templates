@@ -15,11 +15,11 @@ output "f5_username" {
   value = "${module.azure_f5_standalone.f5_username}"
 }
 output "ubuntu_public_ips" {
-    value = ["${module.azure_ubuntu_systems.ubuntu_public_az1_ips}","${module.azure_ubuntu_systems.ubuntu_public_az2_ips}"]
+    value = "${module.azure_ubuntu_systems.ubuntu_public_ips}"
 }
 
 output "ubuntu_private_ips" {
-    value = ["${module.azure_ubuntu_systems.ubuntu_private_az1_ips}","${module.azure_ubuntu_systems.ubuntu_private_az2_ips}"]
+    value = "${module.azure_ubuntu_systems.ubuntu_private_ips}"
 }
 
 
