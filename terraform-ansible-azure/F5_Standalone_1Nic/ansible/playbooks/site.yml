@@ -1,0 +1,23 @@
+---
+
+- name: Ubuntu initialization
+  hosts: aws_ubuntu_systems
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: true
+ 
+  roles: 
+    - ubuntu_initialize
+
+- name: Onboarding BIG-IP
+  hosts: F5_systems
+  gather_facts: false
+  roles:
+   - f5_onboarding
+
+- name: BIG-IP AS3 declaration
+  hosts: F5_systems
+  gather_facts: false
+  roles:
+   - f5_as3_declare

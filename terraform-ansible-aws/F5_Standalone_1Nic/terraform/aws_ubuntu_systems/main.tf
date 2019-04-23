@@ -12,7 +12,7 @@ resource "aws_instance" "ubuntu_instance_az1" {
   vpc_security_group_ids = ["${aws_security_group.ubuntu_sg.id}"]
   tags {
     Name = "${var.owner}-${var.ubuntu_instance_name}-az1-${format("%02d", count.index+1)}"
-    Environmnent = "${var.tag_identifier}"
+    Environmnent = "${var.owner}"
     System = "Terraform"
   }
 }
@@ -27,7 +27,7 @@ resource "aws_instance" "ubuntu_instance_az2" {
   vpc_security_group_ids = ["${aws_security_group.ubuntu_sg.id}"]
   tags {
     Name = "${var.owner}-${var.ubuntu_instance_name}-az2-${format("%02d", count.index+1)}"
-    Environmnent = "${var.tag_identifier}"
+    Environmnent = "${var.owner}"
     System = "Terraform"
   }
 }

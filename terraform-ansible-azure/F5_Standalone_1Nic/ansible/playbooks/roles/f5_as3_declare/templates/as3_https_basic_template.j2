@@ -6,24 +6,24 @@
         "class": "ADC",
         "schemaVersion": "3.0.0",
         "id": "123abc",
-        "label": "vs_www_demo_f5demo_aws",
+        "label": "{{ as3_service_name }}",
         "remark": "HTTPS with predictive-node pool",
         "updateMode": "selective",
-        "demo": {
+        "{{ partition }}": {
             "class": "Tenant",
-            "vs_www_demo_f5demo_aws": {
+            "{{ as3_service_name }}": {
                 "class": "Application",
                 "template": "https",
                 "serviceMain": {
                     "class": "Service_HTTPS",
                     "virtualAddresses": [
-                        "10.10.10.137"
+                        "{{ as3_virtual_address }}"
                     ],
                     "snat": "auto",
-                    "pool": "pool_www_demo_f5demo_aws",
+                    "pool": "{{ as3_pool_name }}",
                     "serverTLS": "webtls"
                 },
-                "pool_www_demo_f5demo_aws": {
+                "{{ as3_pool_name }}": {
                     "class": "Pool",
                     "monitors": [
                         "http"
@@ -31,7 +31,7 @@
                     "members": [
                         {
                             "servicePort": 80,
-                            "serverAddresses": ['10.10.20.91','10.10.21.209']
+                            "serverAddresses": {{ LIST_AS3_POOL_SERVERS }}
                         }
                     ]
                 },

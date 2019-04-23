@@ -1,0 +1,14 @@
+---
+
+service_name: "www_demo_f5demo_aws"
+partition: "demo"
+as3_template_name: "as3_https_basic_template"
+
+#######AS3 service definition########
+as3_template_file_name: "{{ as3_template_name + '.j2'}}"
+as3_declaration_file_name: "{{ as3_template_name + '_' + service_name + '.json'}}"
+
+as3_service_name: "vs_{{ service_name }}"
+as3_virtual_address: "{{ vs_ip }}"
+as3_pool_name: "pool_{{ service_name }}"
+as3_service_label: "{{ service_name }}"
