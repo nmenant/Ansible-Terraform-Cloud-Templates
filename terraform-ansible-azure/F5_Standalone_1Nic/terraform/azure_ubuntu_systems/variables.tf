@@ -23,8 +23,7 @@ variable "ubuntu_instance_name" {
 }
 
 variable "ubuntu_instance_count" {
-    description = "How many ubuntu instances do you want to start per AZ"
-    default = "2"
+    type = "string"
 }
 
 variable "ubuntu_username" {

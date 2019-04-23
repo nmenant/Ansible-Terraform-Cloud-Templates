@@ -14,15 +14,16 @@ module "azure_f5_standalone" {
   source            = "./azure_F5_standalone_1nic"
   azure_region      = "${var.azure_region}"
   azure_rg_name     =  "${module.azure_ressourcegroup.azure_rg_name}"
-  network_name      = "${module.azure_ressourcegroup.network_name}"
   subnet1_public_id = "${module.azure_ressourcegroup.public_subnet1_id}"
   owner             = "${var.owner}-${var.project_name}"
   AllowedIPs        = "${var.AllowedIPs}"
   f5_instance_type  = "${var.f5_instance_type}"
-  azure_az1         = "${var.azure_az1}"
   f5_version        = "${var.f5_version}"
   f5_image_name     = "${var.f5_image_name}"
   f5_product_name   = "${var.f5_product_name}"
+  DO_URL            = "${var.DO_URL}"
+  AS3_URL           = "${var.AS3_URL}"
+  f5_ssh_publickey  = "${var.public_key}"
 }
 
 module "azure_ressourcegroup" {
@@ -45,6 +46,7 @@ module "azure_ubuntu_systems" {
   public_key            = "${var.public_key}"
   azure_rg_name         =  "${module.azure_ressourcegroup.azure_rg_name}"
   AllowedIPs            = "${var.AllowedIPs}"
+  ubuntu_instance_count = "${var.ubuntu_instance_count}"
 }
 
 #data  "template_file" "ansible_inventory" {

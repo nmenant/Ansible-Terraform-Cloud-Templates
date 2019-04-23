@@ -32,8 +32,19 @@ resource "azurerm_network_interface" "bigip1_nic" {
   }
 }
 
+# Install AS3 and DO on BIG-IP
+data "template_file" "f5_bigip_onboard" {
+  template = "${file("./templates/f5_onboard.tpl")}"
+
+  vars {
+    DO_URL          = "${var.DO_URL}"
+    AS3_URL		      = "${var.AS3_URL}"
+    libs_dir		    = "${var.libs_dir}"
+    onboard_log		  = "${var.onboard_log}"
+  }
+}
 # Create F5 BIGIP1
-resource "azurerm_virtual_machine" "f5bigip1" {
+resource "azurerm_virtual_machine" "f5-bigip1" {
   name                         = "${var.owner}-f5-bigip1"
   location                     = "${var.azure_region}"
   resource_group_name          = "${var.azure_rg_name}"
@@ -65,8 +76,7 @@ resource "azurerm_virtual_machine" "f5bigip1" {
   os_profile {
     computer_name  = "${var.owner}-bigip1-os"
     admin_username = "${var.f5_username}"
-  #  admin_password = "${var.upassword}"
-  #  custom_data    = "${data.template_file.vm_onboard.rendered}"
+    custom_data    = "${data.template_file.f5_bigip_onboard.rendered}"
   }
 
   os_profile_linux_config {
@@ -93,16 +103,28 @@ resource "azurerm_virtual_machine" "f5bigip1" {
   }
 }
 
-# Setup BIG-IP with AS3 and DO
-data "template_file" "vm_onboard" {
-  template = "${file("${path.module}/onboard.tpl")}"
+# Run Startup Script
+resource "azurerm_virtual_machine_extension" "f5-bigip1-run-startup-cmd" {
+  name                 = "${var.owner}-f5-bigip1-run-startup-cmd"
+  depends_on           = ["azurerm_virtual_machine.f5-bigip1"]
+  location             = "${var.azure_region}"
+  resource_group_name  = "${var.azure_rg_name}"
+  virtual_machine_name = "${azurerm_virtual_machine.f5-bigip1.name}"
+  publisher            = "Microsoft.OSTCExtensions"
+  type                 = "CustomScriptForLinux"
+  type_handler_version = "1.2"
+  # publisher            = "Microsoft.Azure.Extensions"
+  # type                 = "CustomScript"
+  # type_handler_version = "2.0"
 
-  vars {
-    uname        	  = "${var.uname}"
-    upassword       = "${var.upassword}"
-    DO_onboard_URL  = "${var.DO_onboard_URL}"
-    AS3_URL		      = "${var.AS3_URL}"
-    libs_dir		    = "${var.libs_dir}"
-    onboard_log		  = "${var.onboard_log}"
+  settings = <<SETTINGS
+    {
+        "commandToExecute": "bash /var/lib/waagent/CustomData"
+    }
+  SETTINGS
+
+  tags {
+    Name           = "${var.owner}-f5-bigip1-startup-cmd"
+    owner          = "${var.owner}"
   }
 }

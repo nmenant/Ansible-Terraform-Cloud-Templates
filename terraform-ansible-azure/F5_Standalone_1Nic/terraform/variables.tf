@@ -24,8 +24,8 @@ variable "public_key" {
   default     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCbfw73VHrRi9M+PlzpEW1ROrQkVYbIicoMrNeFHhgLc5aR4FOMvkUh924OcAvnalTASw0KSNAM7CaoSFcE1F/zPTHUnwCY/4liS9qenBeHBqeH1K7aBlaOb0V36zdlnUqRUzq/tL5J4TZkSyBntcKjRKlksxJrsPHvJSs/l36ryqmtyhzi5tLgnEvAKq8NCowpJKn2tornN52cYrf6JJhHRrQp/Cd5b5NXvAkde0mtsqkq6kwFSJwXr1+A2BxmabApDXSq0e0f5pjp0sXBSLweIWqHtFHXY53LGUBwsqvMiL4ijdgRNLTb9OWMtL4Pxy8qjC7Hsxb4iVPFZ9PmDJT3"
 }
 ## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
-variable DO_onboard_URL	{ 
-  default = "https://github.com/garyluf5/f5tools/raw/master/f5-declarative-onboarding-1.3.0-4.noarch.rpm"
+variable DO_URL	{ 
+  default = "https://github.com/nmenant/Public-Cloud-Templates/raw/Development/tools/f5-declarative-onboarding-1.3.0-3.noarch.rpm"
 }
 
 ## Please check and update the latest AS3 URL from https://github.com/F5Networks/f5-appsvcs-extension/releases/latest 
@@ -41,12 +41,9 @@ variable "azure_az2" {
   default = "2"
 }
 
-
-
-
 variable "f5_instance_type" {
   description = "instance type for F5 VM to be deployed"
-  default     = "Standard_DS2_v2"
+  default     = "Standard_DS4_v2"
 }
 
 variable "f5_version" {
@@ -62,4 +59,9 @@ variable "f5_image_name" {
 variable "f5_product_name" {
   description = "BIG-IP product name"
   default     = "f5-big-ip-best"
+}
+
+variable "ubuntu_instance_count" {
+    description = "How many ubuntu instances do you want to start per AZ"
+    default = "1"
 }

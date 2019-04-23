@@ -95,6 +95,13 @@ resource "azurerm_virtual_machine" "azure_az1_ubuntu_vm" {
     vm_size               = "Standard_DS1_v2"
     zones                  = ["${var.ubuntu_subnet_id_az1}"]
 
+    # Uncomment this line to delete the OS disk automatically when deleting the VM
+    delete_os_disk_on_termination = true
+
+
+    # Uncomment this line to delete the data disks automatically when deleting the VM
+    delete_data_disks_on_termination = true
+    
     storage_os_disk {
         name              = "${var.owner}-ubuntu-NGINX-Disk-az1-${format("%02d", count.index+1)}"
         caching           = "ReadWrite"
