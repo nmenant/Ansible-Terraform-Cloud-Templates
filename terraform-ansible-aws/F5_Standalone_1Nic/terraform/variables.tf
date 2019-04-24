@@ -43,3 +43,7 @@ variable AS3_URL {
 variable "f5_instance_type" {
   default = "m5.xlarge"
 }
+variable "app_tag_value" {
+  description = "Value assigned to the tag key Application - will be used by AS3 Service Discovery"
+  default = "www-NGINX"
+}

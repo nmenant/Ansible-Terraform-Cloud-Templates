@@ -28,7 +28,7 @@ resource "aws_instance" "ubuntu_instance_az1" {
   tags {
     Name                        = "${var.owner}-${var.ubuntu_instance_name}-az1-${format("%02d", count.index+1)}"
     Environmnent                = "${var.owner}"
-    Application                 = "www-nginx"
+    Application                 = "${var.app_tag_value}"
   }
 }
 
@@ -43,6 +43,6 @@ resource "aws_instance" "ubuntu_instance_az2" {
   tags {
     Name                        = "${var.owner}-${var.ubuntu_instance_name}-az2-${format("%02d", count.index+1)}"
     Environmnent                = "${var.owner}"
-    Application                 = "www-nginx"
+    Application                 = "${var.app_tag_value}"
   }
 }

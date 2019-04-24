@@ -1,14 +1,4 @@
-#variable "vpc_id" {
-#    description = "AWS VPC for hosting your system(s)"
-#    default = "vpc-00b0b16361f35c81f"
-#}
-#variable "key_name" {
-#    description = "Key name for SSHing into EC2"
-#    default = "NicoKeyPair-USWest2"
-#}
-#variable "aws_region" {
-#  default = "us-west-2"
-#}
+
 
 variable "ubuntu_instance_name" {
     description = "Name for your Ubuntu instances"
@@ -53,5 +43,9 @@ variable "private_subnet1_cidr" {
   type = "string"
 }
 variable "private_subnet2_cidr" {
+  type = "string"
+}
+
+variable "app_tag_value" {
   type = "string"
 }
