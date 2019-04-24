@@ -24,6 +24,9 @@
   set_fact:
     bigip_auth_token: "{{ bigip_auth_response.json.token.token }}"
     
+  ##
+  ## if the AS3 declaration takes time, may return a 202
+  ##
 - name: deploying AS3 service 
   delegate_to: localhost
   uri:
@@ -32,6 +35,7 @@
     headers:
       X-F5-Auth-Token: "{{ bigip_auth_token }}"
     method: POST
-    status_code: 200
+    status_code: 200,202
     url: "https://{{ inventory_hostname }}:{{ ADMIN_HTTPS_PORT }}/mgmt/shared/appsvcs/declare"
     validate_certs: no
+    timeout: 120
