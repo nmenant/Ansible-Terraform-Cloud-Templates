@@ -10,13 +10,6 @@
 #  default = "us-west-2"
 #}
 
-variable "amis" {
-    description = "Base AMI to launch the ubuntu instances"
-    default = {
-        us-west-2 = "ami-0f2016003e1759f35"
-        eu-west-1 = "ami-03d57c34293448f40"
-    }
-}
 variable "ubuntu_instance_name" {
     description = "Name for your Ubuntu instances"
     default = "Ubuntu-NGINX"
@@ -25,11 +18,6 @@ variable "ubuntu_instance_name" {
 variable "ubuntu_instance_count" {
     description = "How many ubuntu instances do you want to start per AZ"
     default = "1"
-}
-
-variable "tag_identifier" {
-    description = "tag assigned to all the generated instances"
-    default = "Nico Terraform"
 }
 
 variable "aws_region" {

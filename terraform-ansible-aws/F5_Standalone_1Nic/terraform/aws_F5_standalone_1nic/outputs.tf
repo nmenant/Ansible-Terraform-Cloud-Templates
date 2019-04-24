@@ -1,10 +1,6 @@
-output "f5_standalone_cft" {
-  value = "${aws_cloudformation_stack.f5-standalone-hourly.outputs}"
-}
-
 output "f5_public_ip" {
-  value = "${aws_cloudformation_stack.f5-standalone-hourly.outputs["Bigip1subnet1Az1SelfEipAddress"]}"
+  value = "${aws_instance.f5_bigip1.public_ip}"
 }
 output "f5_private_ip" {
-  value = "${aws_cloudformation_stack.f5-standalone-hourly.outputs["Bigip1ExternalInterfacePrivateIp"]}"
+  value = "${aws_instance.f5_bigip1.private_ip}"
 }
