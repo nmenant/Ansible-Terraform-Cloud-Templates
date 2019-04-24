@@ -28,19 +28,20 @@ data "template_file" "f5_bigip_onboard" {
 
 #Deploy F5 BIG-IP 1 Nic Standalone
 resource "aws_instance" "f5_bigip1" {
-  instance_type           = "${var.f5_instance_type}"
-  ami                     = "${data.aws_ami.f5_ami.id}"
+  instance_type                 = "${var.f5_instance_type}"
+  ami                           = "${data.aws_ami.f5_ami.id}"
 
-  tags {
-    Name = "${var.owner}-f5_bigip1"
-  }
-
-  key_name                = "${var.key_name}"
-  vpc_security_group_ids  = ["${aws_security_group.f5_bigip_sg.id}"]
-  subnet_id               = "${var.f5_subnet1_id}"
+  
+  associate_public_ip_address   = true
+  key_name                      = "${var.key_name}"
+  vpc_security_group_ids        = ["${aws_security_group.f5_bigip_sg.id}"]
+  subnet_id                     = "${var.f5_subnet1_id}"
 
   root_block_device {
-    delete_on_termination = true
+    delete_on_termination       = true
   }
-  user_data               = "${data.template_file.f5_bigip_onboard.rendered}"
+  user_data                     = "${data.template_file.f5_bigip_onboard.rendered}"
+  tags {
+    Name                        = "${var.owner}-f5_bigip1"
+  }
 }

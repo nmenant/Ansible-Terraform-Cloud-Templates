@@ -24,7 +24,7 @@ variable "owner" {
 }
 
 variable libs_dir { 
-  default = "/config/cloud/azure/node_modules" 
+  default = "/config/cloud/aws" 
 }
 variable onboard_log { 
   default = "/var/log/startup-script.log" 

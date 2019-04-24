@@ -27,7 +27,7 @@ variable "key_path" {
 
 variable "AllowedIPs" {
     description = "Public IPs used to access your instances"
-    default = "109.190.253.11/32"
+    default = "90.120.18.213/32"
 }
 
 ## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
@@ -41,5 +41,5 @@ variable AS3_URL {
 }
 
 variable "f5_instance_type" {
-  default = "t2.medium"
+  default = "m5.xlarge"
 }
