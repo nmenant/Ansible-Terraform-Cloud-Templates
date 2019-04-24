@@ -8,10 +8,6 @@ variable "project_name" {
   default = "TestTerraform"
 }
 
-variable "s3_aws_region" {
-  description = "region for the S3 bucket used to store the state. eu-west-3 is Paris"
-  default = "eu-west-3"
-}
 
 variable "aws_az1" {
   default = "eu-west-1b"
@@ -19,16 +15,6 @@ variable "aws_az1" {
 
 variable "aws_az2" {
   default = "eu-west-1c"
-}
-
-variable "s3_bucket" {
-  description = "name of the S3 bucket"
-  default = "nmenant-private"
-}
-
-variable "s3_path" {
-  description = "Path in the bucket to store the terraform state"
-  default = "terraform/aws"
 }
 
 variable "aws_region" {
@@ -42,4 +28,18 @@ variable "key_path" {
 variable "AllowedIPs" {
     description = "Public IPs used to access your instances"
     default = "109.190.253.11/32"
+}
+
+## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
+variable DO_URL	{ 
+  default = "https://github.com/nmenant/Public-Cloud-Templates/raw/Development/tools/f5-declarative-onboarding-1.3.0-3.noarch.rpm"
+}
+
+## Please check and update the latest AS3 URL from https://github.com/F5Networks/f5-appsvcs-extension/releases/latest 
+variable AS3_URL { 
+  default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.10.0/f5-appsvcs-3.10.0-5.noarch.rpm" 
+}
+
+variable "f5_instance_type" {
+  default = "t2.medium"
 }

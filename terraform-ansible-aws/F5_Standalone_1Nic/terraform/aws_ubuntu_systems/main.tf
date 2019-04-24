@@ -2,9 +2,24 @@ provider "aws" {
   region = "${var.aws_region}"
 }
 
+data "aws_ami" "latest-ubuntu" {
+most_recent = true
+owners = ["099720109477"] # Canonical
+
+  filter {
+      name   = "name"
+      values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
+  }
+
+  filter {
+      name   = "virtualization-type"
+      values = ["hvm"]
+  }
+}
+
 resource "aws_instance" "ubuntu_instance_az1" {
   count = "${var.ubuntu_instance_count}"
-  ami = "${lookup(var.amis, var.aws_region)}"
+  ami = "${data.aws_ami.latest-ubuntu.id}"
   subnet_id = "${var.ubuntu_subnet_id_az1}"
   key_name = "${var.key_name}"
   instance_type = "t2.micro"
@@ -19,7 +34,7 @@ resource "aws_instance" "ubuntu_instance_az1" {
 
 resource "aws_instance" "ubuntu_instance_az2" {
   count = "${var.ubuntu_instance_count}"
-  ami = "${lookup(var.amis, var.aws_region)}"
+  ami = "${data.aws_ami.latest-ubuntu.id}"
   subnet_id = "${var.ubuntu_subnet_id_az2}"
   key_name = "${var.key_name}"
   instance_type = "t2.micro"

@@ -31,10 +31,13 @@ output "ubuntu_private_ips" {
     value = ["${module.aws_ubuntu_systems.ubuntu_private_az1_ips}","${module.aws_ubuntu_systems.ubuntu_private_az2_ips}"]
 
 }
-output "f5_standalone_cft" {
-  value = "${module.aws_f5_standalone.f5_standalone_cft}"
-}
 
+output f5_public_ip {
+  value = "${module.aws_f5_standalone.f5_public_ip}"
+}
+output f5_private_ip {
+  value = "${module.aws_f5_standalone.f5_private_ip}"
+}
 output "allowed_ips" {
   value = "${var.AllowedIPs}"
 }
