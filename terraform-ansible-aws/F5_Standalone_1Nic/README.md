@@ -17,8 +17,8 @@ Remarks - Ansible
 -----------------
 
 * ansible/inventory/hosts will be created automatically by Terraform. *vs_ip* in the hosts file is the PRIVATE IP of your BIG-IP.
-* playbooks/group_vars/F5_systems/vars will list your ubuntu PRIVATE IPs (variable LIST_AS3_POOL_SERVERS). This is created automatically by Terraform
-* you MUST create a file called vault in ansible/playbooks/group_vars/F5_systems. You need to create this file yourself to store the admin password that will be used on your BIG-IP. the ACCESSKEY and SECRETKEY will be used by AS3 to automatically discover your Application instances.  Inside this file, put the admin password, ACCESSKEY and SECRETKEY. you want to setup on your BIG-IP this way :
+* playbooks/group_vars/F5_systems/vars will list the tags to look for to identify the AWS instances to define as pool members. This file is created automatically by Terraform
+* you MUST create a file called f5_vault in ansible/playbooks/group_vars/F5_systems. You need to create this file yourself to store the admin password that will be used on your BIG-IP. the ACCESSKEY and SECRETKEY will be used by AS3 to automatically discover your Application instances.  Inside this file, put the admin password, ACCESSKEY and SECRETKEY. you want to setup on your BIG-IP this way :
 
 ```
 VAULT_ADMIN_PASSWORD: "XXXXX"
@@ -28,6 +28,6 @@ VAULT_AWS_ACCESSKEY: "XXXXX"
 VAULT_AWS_SECRETKEY: "XXXXXXXXX"
 ```
 
-* Once it's done, encrypt the file with the command *ansible-vault encrypt ansible/playbooks/group_vars/F5_systems/vault*
+* Once it's done, encrypt the file with the command *ansible-vault encrypt ansible/playbooks/group_vars/F5_systems/f5_vault*
 * update your ansible roles accordingly if needed.
 * You can run *ansible-playbook -i inventory/hosts site.yml --ask-vault-pass*
