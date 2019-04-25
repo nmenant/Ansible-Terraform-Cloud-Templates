@@ -1,5 +1,5 @@
 .terraform/
 terraform.tfstate*
-f5_vault*
+f5_vault
 site.retry
 empty
