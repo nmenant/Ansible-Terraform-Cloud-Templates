@@ -37,6 +37,7 @@ module "aws_ubuntu_systems" {
   key_name              = "${module.aws_vpc.key_name}"
   vpc_id                =  "${module.aws_vpc.vpc_default_id}"
   AllowedIPs            = "${var.AllowedIPs}"
+  app_tag_value         = "${var.app_tag_value}"
 }
 
 data  "template_file" "ansible_inventory" {
@@ -55,7 +56,7 @@ resource "local_file" "ansible_inventory_file" {
 data  "template_file" "ansible_f5_vars" {
     template = "${file("./templates/ansible_f5_vars.tpl")}"
     vars {
-        aws_f5_pool_members = "${join("','", "${module.aws_ubuntu_systems.ubuntu_private_ips}")}"
+      aws_tag_value  = "${var.app_tag_value}"
     }
 }
 resource "local_file" "ansible_f5_vars_file" {

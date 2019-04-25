@@ -4,30 +4,26 @@
     "persist": true,
     "declaration": {
         "class": "ADC",
-        "schemaVersion": "3.10.0",
-        "id": "demo-servicediscovery",
-        "label": "{{ as3_service_name }}",
-        "remark": "HTTPS with pool service-discovery",
+        "schemaVersion": "3.0.0",
+        "id": "123abc",
+        "label": "vs_www_demo_f5demo_aws",
+        "remark": "HTTPS with predictive-node pool",
         "updateMode": "selective",
-        "controls": {
-            "class": "Controls",
-            "logLevel": "debug"
-        },
-        "{{ partition }}": {
+        "demo": {
             "class": "Tenant",
-            "{{ as3_service_name }}": {
+            "vs_www_demo_f5demo_aws": {
                 "class": "Application",
                 "template": "https",
                 "serviceMain": {
                     "class": "Service_HTTPS",
                     "virtualAddresses": [
-                        "{{ as3_virtual_address }}"
+                        "10.10.10.54"
                     ],
                     "snat": "auto",
-                    "pool": "{{ as3_pool_name }}",
+                    "pool": "pool_www_demo_f5demo_aws",
                     "serverTLS": "webtls"
                 },
-                "{{ as3_pool_name }}": {
+                "pool_www_demo_f5demo_aws": {
                     "class": "Pool",
                     "monitors": [
                         "http"
@@ -36,12 +32,12 @@
                         "servicePort": 80,
                         "addressDiscovery": "aws",
                         "updateInterval": 50,
-                        "tagKey": "{{APP_TAG_KEY}}",
-                        "tagValue": "{{APP_TAG_VALUE}}",
+                        "tagKey": "Application",
+                        "tagValue": "www-NGINX",
                         "addressRealm": "private",
                         "region": "eu-west-1",
-                        "accessKeyId": "{{AWS_ACCESSKEY}}",
-                        "secretAccessKey": "{{AWS_SECRETKEY}}",
+                        "accessKeyId": "AKIAUTVQ2RQZGNATR3AO",
+                        "secretAccessKey": "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",
                         "credentialUpdate": false,
                         "shareNodes": true
                     }]

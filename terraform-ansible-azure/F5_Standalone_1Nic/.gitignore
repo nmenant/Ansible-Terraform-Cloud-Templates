@@ -2,3 +2,4 @@
 terraform.tfstate*
 .terraform.tfstate*
 init-azure-env.sh
+ansible/playbooks/group_vars/F5_systems/vault
