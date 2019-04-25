@@ -1,4 +1,4 @@
 .terraform/
 terraform.tfstate*
 .terraform.tfstate*
-ansible/playbooks/group_vars/F5_systems/vault
+vault
