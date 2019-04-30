@@ -5,3 +5,4 @@ f5_vault
 *.json
 site.retry
 empty
+init-azure-env.sh
