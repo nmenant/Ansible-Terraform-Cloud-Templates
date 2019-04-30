@@ -9,12 +9,16 @@ Remarks - Terraform
 -------------------
 
 * make sure that your Azure credentials are set on your system (env variables)
+
+```
   #!/bin/bash
   echo "Setting environment variables for Terraform"
   export ARM_SUBSCRIPTION_ID=IIIIII
   export ARM_CLIENT_ID=EEEEEE
   export ARM_CLIENT_SECRET=XXXXX
   export ARM_TENANT_ID=SSSSS
+```
+
   source the file to load it (you can check it's loaded with *env* or *printenv*)
 
 * update terraform/variables.tf to deploy the infrastructure components acordingly
