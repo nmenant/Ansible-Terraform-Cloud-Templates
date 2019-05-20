@@ -32,7 +32,7 @@ variable "AllowedIPs" {
 
 ## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
 variable DO_URL	{ 
-  default = "https://github.com/nmenant/Public-Cloud-Templates/raw/Development/tools/f5-declarative-onboarding-1.4.0-1.noarch.rpm"
+  default = "https://github.com/nmenant/Public-Cloud-Templates/raw/master/tools/f5-declarative-onboarding-1.4.0-1.noarch.rpm"
 }
 
 ## Please check and update the latest AS3 URL from https://github.com/F5Networks/f5-appsvcs-extension/releases/latest 
