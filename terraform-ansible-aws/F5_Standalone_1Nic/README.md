@@ -10,7 +10,7 @@ Remarks - Terraform
 
 * make sure that your AWS credentials are set on your system using Terraform / Ansible (.aws/credentials for example on mac)
 * update terraform/variables.tf to deploy the infrastructure components acordingly
-* do *terraform get* / *terraform plan* / *terraform apply* to deploy your infrastructure
+* do *terraform init* / *terraform get* / *terraform plan* / *terraform apply* to deploy your infrastructure
 * *terraform output* will give you the relevant public IPs related to your infrastructure.
 
 Remarks - Ansible

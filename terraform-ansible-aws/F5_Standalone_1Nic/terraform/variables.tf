@@ -27,17 +27,17 @@ variable "key_path" {
 
 variable "AllowedIPs" {
     description = "Public IPs used to access your instances"
-    default = "90.120.18.213/32"
+    default = "86.195.123.90/32"
 }
 
 ## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
 variable DO_URL	{ 
-  default = "https://github.com/nmenant/Public-Cloud-Templates/raw/Development/tools/f5-declarative-onboarding-1.3.0-3.noarch.rpm"
+  default = "https://github.com/nmenant/Public-Cloud-Templates/raw/Development/tools/f5-declarative-onboarding-1.4.0-1.noarch.rpm"
 }
 
 ## Please check and update the latest AS3 URL from https://github.com/F5Networks/f5-appsvcs-extension/releases/latest 
 variable AS3_URL { 
-  default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.10.0/f5-appsvcs-3.10.0-5.noarch.rpm" 
+  default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.11.0/f5-appsvcs-3.11.0-3.noarch.rpm" 
 }
 
 variable "f5_instance_type" {
