@@ -128,3 +128,9 @@ resource "azurerm_virtual_machine_extension" "f5-bigip1-run-startup-cmd" {
     owner          = "${var.owner}"
   }
 }
+
+#Needed to retrieve the F5 public IP when doing dynamic IP allocation
+data "azurerm_public_ip" "bigip1-public-ip" {
+  name                = "${azurerm_public_ip.bigip1_public_ip.name}"
+  resource_group_name = "${var.azure_rg_name}"
+}

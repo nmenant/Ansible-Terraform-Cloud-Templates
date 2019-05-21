@@ -1,5 +1,5 @@
 output "f5_public_ip" {
-  value = "${azurerm_public_ip.bigip1_public_ip.ip_address}"
+  value = "${data.azurerm_public_ip.bigip1-public-ip.ip_address}"
 }
 
 output "f5_private_ip" {
