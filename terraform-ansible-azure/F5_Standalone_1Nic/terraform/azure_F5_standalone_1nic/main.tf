@@ -133,4 +133,6 @@ resource "azurerm_virtual_machine_extension" "f5-bigip1-run-startup-cmd" {
 data "azurerm_public_ip" "bigip1-public-ip" {
   name                = "${azurerm_public_ip.bigip1_public_ip.name}"
   resource_group_name = "${var.azure_rg_name}"
+
+  depends_on = ["azurerm_virtual_machine.f5-bigip1"]
 }
