@@ -27,7 +27,7 @@ variable "key_path" {
 
 variable "AllowedIPs" {
     description = "Public IPs used to access your instances"
-    default = "86.195.123.90/32"
+    default = "80.12.39.154/32"
 }
 
 ## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases

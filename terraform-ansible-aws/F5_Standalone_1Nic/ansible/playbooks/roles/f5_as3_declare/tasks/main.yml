@@ -5,10 +5,12 @@
 #    file: "{{ role_path }}/templates/as3_parameters/{{ as3_parameters_file_name }}"
  
 - name: prepare the AS3 declaration 
+  vars:
+    AWS_ACCESSKEY_RO:  "{{ lookup('env','AWS_ACCESSKEY_RO') }}"
+    AWS_SECRETKEY_RO: "{{ lookup('env','AWS_SECRETKEY_RO') }}"
   template: src="{{ role_path }}/templates/{{ as3_template_file_name }}" dest="{{ role_path }}/files/{{ as3_declaration_file_name }}"
   delegate_to: localhost
 
-  
 - name: Getting bigip authentication token
   delegate_to: localhost
   uri:
