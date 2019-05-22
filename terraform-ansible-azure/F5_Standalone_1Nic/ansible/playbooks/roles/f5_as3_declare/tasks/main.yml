@@ -35,3 +35,13 @@
     status_code: 200
     url: "https://{{ inventory_hostname }}:{{ ADMIN_HTTPS_PORT }}/mgmt/shared/appsvcs/declare"
     validate_certs: no
+
+##
+## Deleting json file containing the AS3 declaration since it could contains API credentials information
+##
+
+- name: delete the AS3 declaration file
+  file: 
+    path: "{{ role_path }}/files/{{ as3_declaration_file_name }}"
+    state: absent
+  delegate_to: localhost
