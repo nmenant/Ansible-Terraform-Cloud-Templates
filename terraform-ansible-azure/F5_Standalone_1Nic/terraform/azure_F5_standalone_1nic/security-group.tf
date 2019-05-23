@@ -68,7 +68,7 @@ resource "azurerm_network_security_group" "bigip_sg" {
     destination_address_prefix = "*"
   }
 
-  tags {
+  tags = {
     Name           = "${var.owner}-bigip-sg"
     owner          = "${var.owner}"
   }

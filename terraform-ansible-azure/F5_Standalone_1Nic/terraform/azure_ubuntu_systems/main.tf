@@ -7,7 +7,7 @@ resource "azurerm_public_ip" "ubuntu_az1_publicips" {
     allocation_method            = "Static"
     zones                        = ["${var.ubuntu_subnet_id_az1}"]
 
-    tags {
+    tags = {
         environment = "${var.owner}"
     }
 }
@@ -20,7 +20,7 @@ resource "azurerm_public_ip" "ubuntu_az2_publicips" {
     allocation_method            = "Static"
     zones                        = ["${var.ubuntu_subnet_id_az2}"]
 
-    tags {
+    tags = {
         environment = "${var.owner}"
     }
 }
@@ -39,7 +39,7 @@ resource "azurerm_network_interface" "ubuntu_az1_privatenics" {
         public_ip_address_id          = "${element(azurerm_public_ip.ubuntu_az1_publicips.*.id, count.index)}"
     }
 
-    tags {
+    tags = {
         environment = "${var.owner}"
     }
 }
@@ -58,7 +58,7 @@ resource "azurerm_network_interface" "ubuntu_az2_privatenics" {
         public_ip_address_id          = "${element(azurerm_public_ip.ubuntu_az2_publicips.*.id, count.index)}"
     }
 
-    tags {
+    tags = {
         environment = "${var.owner}"
     }
 }
@@ -81,7 +81,7 @@ resource "azurerm_storage_account" "azure_storage_account" {
     account_replication_type = "LRS"
     account_tier = "Standard"
 
-    tags {
+    tags = {
         environment = "${var.owner}"
     }
 }
@@ -134,7 +134,7 @@ resource "azurerm_virtual_machine" "azure_az1_ubuntu_vm" {
         storage_uri = "${azurerm_storage_account.azure_storage_account.primary_blob_endpoint}"
     }
 
-    tags {
+    tags = {
         environment = "${var.owner}"
     }
 }
@@ -180,7 +180,7 @@ resource "azurerm_virtual_machine" "azure_az2_ubuntu_vm" {
         storage_uri = "${azurerm_storage_account.azure_storage_account.primary_blob_endpoint}"
     }
 
-    tags {
+    tags = {
         environment = "${var.owner}"
     }
 }
