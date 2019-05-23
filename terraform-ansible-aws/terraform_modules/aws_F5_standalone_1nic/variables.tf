@@ -15,8 +15,7 @@ variable "AllowedIPs" {
 }
 
 variable "bigip_https_port" {
-    description = "TCP Port use to access BIG-IP GUI or API"
-    default = "8443"
+  type = "string"
 }
 
 variable "owner" {

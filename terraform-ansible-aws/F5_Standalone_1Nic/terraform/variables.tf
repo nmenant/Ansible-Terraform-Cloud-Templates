@@ -1,33 +1,71 @@
-variable "owner" {
-  description = "Name of the owner of this deployment (no space)"
-  default     = "NicoM"
+variable "owner" {}
+
+variable "project_name" {}
+
+variable "key_path" {}
+
+variable "AllowedIPs" {}
+
+variable "aws_region" {}
+
+variable "aws_az1" {}
+
+variable "aws_az2" {}
+
+##
+## Description of VPC CIDR and private/public subnets
+## Each private/public subnet will be assigned to a different AZ
+##
+variable "vpc_cidr" {
+    description = "AWS VPC CIDR"
+    default = "10.10.0.0/16"
+}
+variable "public_subnet1_cidr" {
+  description = "First public subnet IP range"
+  default = "10.10.10.0/24"
 }
 
-variable "project_name" {
-  description = "Name of the project related to this VPC"
-  default     = "TestTerraform"
+variable "public_subnet2_cidr" {
+  description = "2nd public subnet IP range"
+  default = "10.10.11.0/24"
 }
 
-variable "aws_az1" {
-  default = "eu-west-1b"
+variable "private_subnet1_cidr" {
+  description = "2nd public subnet IP range"
+  default = "10.10.20.0/24"
 }
 
-variable "aws_az2" {
-  default = "eu-west-1c"
+variable "private_subnet2_cidr" {
+  description = "2nd public subnet IP range"
+  default = "10.10.21.0/24"
 }
 
-variable "aws_region" {
-  default = "eu-west-1"
+##
+## Ubuntu instance setup
+## 
+
+variable "ubuntu_instance_count" {
+    description = "How many ubuntu instances do you want to start per AZ"
+    default = "2"
 }
 
-variable "key_path" {
-  description = "SSH Public Key path"
-  default     = "/Users/menant/.ssh/id_rsa.pub"
+variable "ubuntu_instance_name" {
+    description = "Name for your Ubuntu instances"
+    default = "Ubuntu-NGINX"
 }
 
-variable "AllowedIPs" {
-  description = "Public IPs used to access your instances"
-  default     = "109.7.65.101/32"
+##
+## Will influence F5 onboarding setup and which iControl Extension
+## should be loaded by default
+## 
+
+variable "f5_instance_type" {
+  default = "m5.xlarge"
+}
+
+variable "bigip_https_port" {
+    description = "TCP Port use to access BIG-IP GUI or API"
+    default = "8443"
 }
 
 ## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
@@ -40,12 +78,5 @@ variable "AS3_URL" {
   default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.11.0/f5-appsvcs-3.11.0-3.noarch.rpm"
 }
 
-variable "f5_instance_type" {
-  default = "m5.xlarge"
-}
-
-variable "app_tag_value" {
-  description = "Value assigned to the tag key Application - will be used by AS3 Service Discovery"
-  default     = "www-NGINX"
-}
+variable "app_tag_value" {}
 

@@ -1,13 +1,11 @@
 
 
 variable "ubuntu_instance_name" {
-    description = "Name for your Ubuntu instances"
-    default = "Ubuntu-NGINX"
+    type = "string"
 }
 
 variable "ubuntu_instance_count" {
-    description = "How many ubuntu instances do you want to start per AZ"
-    default = "2"
+  type = "string"
 }
 
 variable "aws_region" {
