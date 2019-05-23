@@ -7,7 +7,7 @@ variable "ubuntu_instance_name" {
 
 variable "ubuntu_instance_count" {
     description = "How many ubuntu instances do you want to start per AZ"
-    default = "1"
+    default = "2"
 }
 
 variable "aws_region" {

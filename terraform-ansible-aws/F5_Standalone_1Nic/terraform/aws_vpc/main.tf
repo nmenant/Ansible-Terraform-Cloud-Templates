@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_vpc" "default" {
   cidr_block = "${var.vpc_cidr}"
   enable_dns_hostnames = true
-  tags {
+  tags = {
     Name = "${var.owner}-VPC"
   }
 }
@@ -15,7 +15,7 @@ resource "aws_subnet" "public-subnet1" {
   cidr_block = "${var.public_subnet1_cidr}"
   availability_zone = "${var.aws_az1}"
 
-  tags {
+  tags = {
     Name = "${var.owner}-public-subnet1"
   }
 }
@@ -25,7 +25,7 @@ resource "aws_subnet" "public-subnet2" {
   cidr_block = "${var.public_subnet2_cidr}"
   availability_zone = "${var.aws_az2}"
 
-  tags {
+  tags = {
     Name = "${var.owner}-public-subnet2"
   }
 }
@@ -35,7 +35,7 @@ resource "aws_subnet" "private-subnet1" {
   cidr_block = "${var.private_subnet1_cidr}"
   availability_zone = "${var.aws_az1}"
 
-  tags {
+  tags = {
     Name = "${var.owner}-private-subnet1"
   }
 }
@@ -46,14 +46,14 @@ resource "aws_subnet" "private-subnet2" {
   cidr_block = "${var.private_subnet2_cidr}"
   availability_zone = "${var.aws_az2}"
 
-  tags {
+  tags = {
     Name = "${var.owner}-private-subnet2"
   }
 }
 
 resource "aws_internet_gateway" "internet-gw" {
   vpc_id = "${aws_vpc.default.id}"
-  tags {
+  tags = {
     Name = "${var.owner}-InternetGw"
   }
 }
@@ -65,7 +65,7 @@ resource "aws_route_table" "public-route-table" {
     gateway_id = "${aws_internet_gateway.internet-gw.id}"
   }
 
-  tags {
+  tags = {
     Name = "${var.owner}-Public-RouteTable"
   }
 }

@@ -18,7 +18,7 @@ data "aws_ami" "f5_ami" {
 data "template_file" "f5_bigip_onboard" {
   template = "${file("./templates/f5_onboard.tpl")}"
 
-  vars {
+  vars = {
     DO_URL          = "${var.DO_URL}"
     AS3_URL		      = "${var.AS3_URL}"
     libs_dir		    = "${var.libs_dir}"
@@ -41,7 +41,7 @@ resource "aws_instance" "f5_bigip1" {
     delete_on_termination       = true
   }
   user_data                     = "${data.template_file.f5_bigip_onboard.rendered}"
-  tags {
+  tags = {
     Name                        = "${var.owner}-f5_bigip1"
   }
 }

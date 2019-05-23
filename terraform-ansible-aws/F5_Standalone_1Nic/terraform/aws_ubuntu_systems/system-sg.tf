@@ -38,7 +38,7 @@ resource "aws_security_group" "ubuntu_sg" {
         cidr_blocks = ["0.0.0.0/0"] 
     }
 
-    tags {
+    tags = {
         Name = "${var.ubuntu_instance_name}_sg"
     }
 }
