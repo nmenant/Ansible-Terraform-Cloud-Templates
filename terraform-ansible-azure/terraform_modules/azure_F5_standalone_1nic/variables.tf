@@ -13,7 +13,7 @@ variable "subnet1_public_id" {
   type = "string"
 }
 variable "AllowedIPs" {
-  type = "string"
+  type = list(string)
 }
 
 variable "f5_instance_type" {

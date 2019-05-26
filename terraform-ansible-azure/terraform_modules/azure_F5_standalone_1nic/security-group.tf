@@ -12,7 +12,7 @@ resource "azurerm_network_security_group" "bigip_sg" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "22"
-    source_address_prefix      = "${var.AllowedIPs}"
+    source_address_prefixes    = var.AllowedIPs
     destination_address_prefix = "*"
   }
 
@@ -25,7 +25,7 @@ resource "azurerm_network_security_group" "bigip_sg" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "80"
-    source_address_prefix      = "${var.AllowedIPs}"
+    source_address_prefixes    = var.AllowedIPs
     destination_address_prefix = "*"
   }
 
@@ -38,7 +38,7 @@ resource "azurerm_network_security_group" "bigip_sg" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "443"
-    source_address_prefix      = "${var.AllowedIPs}"
+    source_address_prefixes    = var.AllowedIPs
     destination_address_prefix = "*"
   }
 
@@ -51,7 +51,7 @@ resource "azurerm_network_security_group" "bigip_sg" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "3389"
-    source_address_prefix      = "${var.AllowedIPs}"
+    source_address_prefixes    = var.AllowedIPs
     destination_address_prefix = "*"
   }
 
@@ -64,7 +64,7 @@ resource "azurerm_network_security_group" "bigip_sg" {
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "8443"
-    source_address_prefix      = "${var.AllowedIPs}"
+    source_address_prefixes    = var.AllowedIPs
     destination_address_prefix = "*"
   }
 

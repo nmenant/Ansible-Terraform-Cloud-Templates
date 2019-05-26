@@ -1,0 +1,15 @@
+[azure_ubuntu_systems]
+40.89.134.53
+40.89.188.154
+
+[F5_systems]
+#Must be in the form of <public IP> vs_ip=<private ip of the F5>
+20.188.32.108 vs_ip=10.10.10.4
+
+[azure_ubuntu_systems:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=azureuser
+
+[F5_systems:vars]
+ansible_python_interpreter=/Users/menant/projects/python-virtualenv/myansible/bin/python
+ansible_user=azureuser

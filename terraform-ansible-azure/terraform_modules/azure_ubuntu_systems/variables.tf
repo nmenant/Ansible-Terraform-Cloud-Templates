@@ -26,6 +26,9 @@ variable "ubuntu_instance_count" {
     type = "string"
 }
 
+variable "ubuntu_instance_size" {
+  type = "string"
+}
 variable "ubuntu_username" {
   description = "name of the user that will be created on the instance"
   default = "azureuser"
@@ -50,10 +53,14 @@ variable "azure_rg_name" {
   type = "string"
 }
 variable "AllowedIPs" {
-  type = "string"
+  type = list(string)
 }
 
 variable "owner" {
+  type = "string"
+}
+
+variable "app_tag_value" {
   type = "string"
 }
 

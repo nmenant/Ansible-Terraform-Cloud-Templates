@@ -12,7 +12,7 @@ provider "azurerm" {
 }
 
 module "azure_f5_standalone" {
-  source            = "./azure_F5_standalone_1nic"
+  source            = "../../terraform_modules/azure_F5_standalone_1nic"
   azure_region      = var.azure_region
   azure_rg_name     = module.azure_ressourcegroup.azure_rg_name
   subnet1_public_id = module.azure_ressourcegroup.public_subnet1_id
@@ -28,13 +28,13 @@ module "azure_f5_standalone" {
 }
 
 module "azure_ressourcegroup" {
-  source       = "./azure_ressourcegroup"
+  source       = "../../terraform_modules/azure_ressourcegroup"
   owner        = "${var.owner}-${var.project_name}"
   azure_region = var.azure_region
 }
 
 module "azure_ubuntu_systems" {
-  source               = "./azure_ubuntu_systems"
+  source               = "../../terraform_modules/azure_ubuntu_systems"
   azure_region         = var.azure_region
   owner                = "${var.owner}-${var.project_name}"
   ubuntu_subnet_id_az1 = var.azure_az1
@@ -50,6 +50,8 @@ module "azure_ubuntu_systems" {
   azure_rg_name         = module.azure_ressourcegroup.azure_rg_name
   AllowedIPs            = var.AllowedIPs
   ubuntu_instance_count = var.ubuntu_instance_count
+  ubuntu_instance_size  = var.ubuntu_instance_size
+  app_tag_value         = var.app_tag_value
 }
 
 data "template_file" "ansible_inventory" {

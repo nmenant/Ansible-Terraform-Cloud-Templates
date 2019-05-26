@@ -92,7 +92,7 @@ resource "azurerm_virtual_machine" "azure_az1_ubuntu_vm" {
     location              = "${var.azure_region}"
     resource_group_name   = "${var.azure_rg_name}"
     network_interface_ids = ["${element(azurerm_network_interface.ubuntu_az1_privatenics.*.id, count.index)}"]
-    vm_size               = "Standard_DS1_v2"
+    vm_size               = "${var.ubuntu_instance_size}"
     zones                  = ["${var.ubuntu_subnet_id_az1}"]
 
     # Uncomment this line to delete the OS disk automatically when deleting the VM
@@ -136,6 +136,7 @@ resource "azurerm_virtual_machine" "azure_az1_ubuntu_vm" {
 
     tags = {
         environment = "${var.owner}"
+        Application = "${var.app_tag_value}"
     }
 }
 
@@ -145,7 +146,7 @@ resource "azurerm_virtual_machine" "azure_az2_ubuntu_vm" {
     location              = "${var.azure_region}"
     resource_group_name   = "${var.azure_rg_name}"
     network_interface_ids = ["${element(azurerm_network_interface.ubuntu_az2_privatenics.*.id, count.index)}"]
-    vm_size               = "Standard_DS1_v2"
+    vm_size               = "${var.ubuntu_instance_size}"
     zones                  = ["${var.ubuntu_subnet_id_az2}"]
 
     storage_os_disk {
@@ -182,5 +183,6 @@ resource "azurerm_virtual_machine" "azure_az2_ubuntu_vm" {
 
     tags = {
         environment = "${var.owner}"
+        Application = "${var.app_tag_value}"
     }
 }
