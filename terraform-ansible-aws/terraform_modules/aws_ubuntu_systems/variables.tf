@@ -24,7 +24,7 @@ variable "vpc_id" {
   type = "string"
 }
 variable "AllowedIPs" {
-  type = "string"
+  type = list(string)
 }
 
 variable "owner" {

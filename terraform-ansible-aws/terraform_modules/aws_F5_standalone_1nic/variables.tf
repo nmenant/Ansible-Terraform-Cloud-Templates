@@ -11,7 +11,7 @@ variable "key_name" {
   type = "string"
 }
 variable "AllowedIPs" {
-  type = "string"
+  type = list(string)
 }
 
 variable "bigip_https_port" {

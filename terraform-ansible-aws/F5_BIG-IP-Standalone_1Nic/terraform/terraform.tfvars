@@ -15,7 +15,7 @@ aws_az2 = "eu-west-1c"
 key_path = "/Users/menant/.ssh/id_rsa.pub"
 
 #Public IPs used to access your instances
-AllowedIPs = "109.7.65.101/32"
+AllowedIPs = ["109.7.65.101/32","86.195.123.90/32"]
 
 #Value assigned to the tag key Application - will be used for AS3 Service Discovery
 app_tag_value = "www-NGINX"
