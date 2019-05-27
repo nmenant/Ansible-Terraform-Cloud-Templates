@@ -11,6 +11,8 @@ aws_region = "eu-west-1"
 aws_az1 = "eu-west-1b"
 aws_az2 = "eu-west-1c"
 
+#F5 Image to deploy
+f5_name_filter = "F5 Networks BIGIP-13.* PAYG - Best 200Mbps*"
 #Public key to use to access the instances
 key_path = "/Users/menant/.ssh/id_rsa.pub"
 
