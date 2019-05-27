@@ -14,6 +14,10 @@ variable "AllowedIPs" {
   type = list(string)
 }
 
+variable "f5_name_filter" {
+  type = "string"
+}
+
 variable "bigip_https_port" {
   type = "string"
 }

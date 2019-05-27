@@ -1,6 +1,6 @@
 resource "aws_security_group" "f5_bigip_sg" {
   name        = "${var.owner}-f5-sg"
-  vpc_id      = "${var.vpc_id}"
+  vpc_id      = var.vpc_id
   description = "${var.owner} F5 BIG-IP Security Group"
 
   # SSH

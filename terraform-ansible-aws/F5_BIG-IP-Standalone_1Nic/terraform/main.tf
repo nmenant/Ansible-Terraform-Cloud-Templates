@@ -14,6 +14,7 @@ module "aws_f5_standalone" {
   DO_URL            = var.DO_URL
   f5_instance_type  = var.f5_instance_type
   bigip_https_port  = var.bigip_https_port
+  f5_name_filter    = var.f5_name_filter
 }
 
 module "aws_vpc" {

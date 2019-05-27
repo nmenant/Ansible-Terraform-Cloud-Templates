@@ -12,6 +12,8 @@ variable "aws_az1" {}
 
 variable "aws_az2" {}
 
+variable "f5_name_filter" {}
+
 ##
 ## Description of VPC CIDR and private/public subnets
 ## Each private/public subnet will be assigned to a different AZ

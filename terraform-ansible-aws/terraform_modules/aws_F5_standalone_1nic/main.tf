@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "${var.aws_region}"
+  region = var.aws_region
 }
 
 #Get the most recent AMI for F5
@@ -9,7 +9,7 @@ data "aws_ami" "f5_ami" {
 
   filter {
     name   = "name"
-    values = ["F5 Networks BIGIP-13.* PAYG - Best 200Mbps*"]
+    values = [var.f5_name_filter]
   }
 }
 
@@ -19,23 +19,23 @@ data "template_file" "f5_bigip_onboard" {
   template = "${file("./templates/f5_onboard.tpl")}"
 
   vars = {
-    DO_URL          = "${var.DO_URL}"
-    AS3_URL		      = "${var.AS3_URL}"
-    libs_dir		    = "${var.libs_dir}"
-    onboard_log		  = "${var.onboard_log}"
+    DO_URL          = var.DO_URL
+    AS3_URL		      = var.AS3_URL
+    libs_dir		    = var.libs_dir
+    onboard_log		  = var.onboard_log
   }
 }
 
 #Deploy F5 BIG-IP 1 Nic Standalone
 resource "aws_instance" "f5_bigip1" {
-  instance_type                 = "${var.f5_instance_type}"
-  ami                           = "${data.aws_ami.f5_ami.id}"
+  instance_type                 = var.f5_instance_type
+  ami                           = data.aws_ami.f5_ami.id
 
   
   associate_public_ip_address   = true
-  key_name                      = "${var.key_name}"
-  vpc_security_group_ids        = ["${aws_security_group.f5_bigip_sg.id}"]
-  subnet_id                     = "${var.f5_subnet1_id}"
+  key_name                      = var.key_name
+  vpc_security_group_ids        = [aws_security_group.f5_bigip_sg.id]
+  subnet_id                     = var.f5_subnet1_id
 
   root_block_device {
     delete_on_termination       = true
