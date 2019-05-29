@@ -2,52 +2,40 @@ variable "owner" {}
 
 variable "project_name" {}
 
-variable "key_path" {}
+variable vmware_datacenter {}
 
-variable "AllowedIPs" {}
+variable vmware_cluster {}
 
-variable "aws_region" {}
+variable vmware_f5_datastore {}
 
-variable "aws_az1" {}
+//variable vmware_f5_resource_pool {}
 
-variable "aws_az2" {}
+variable vmware_f5_network_name {}
 
-variable "f5_name_filter" {}
+variable vmware_ubuntu_datastore {}
 
-##
-## Description of VPC CIDR and private/public subnets
-## Each private/public subnet will be assigned to a different AZ
-##
-variable "vpc_cidr" {
-    description = "AWS VPC CIDR"
-    default = "10.10.0.0/16"
-}
-variable "public_subnet1_cidr" {
-  description = "First public subnet IP range"
-  default = "10.10.10.0/24"
-}
+//variable vmware_ubuntu_resource_pool {}
 
-variable "public_subnet2_cidr" {
-  description = "2nd public subnet IP range"
-  default = "10.10.11.0/24"
-}
+variable vmware_ubuntu_network_name {}
 
-variable "private_subnet1_cidr" {
-  description = "2nd public subnet IP range"
-  default = "10.10.20.0/24"
-}
+variable "app_tag_value" {}
 
-variable "private_subnet2_cidr" {
-  description = "2nd public subnet IP range"
-  default = "10.10.21.0/24"
-}
+variable ssh_public_key {}
+
+variable "vmware_f5_bigip_template_name" {}
+
+variable "vmware_ubuntu_template_name" {}
 
 ##
 ## Ubuntu instance setup
 ## 
+variable "domain_name" {
+  description = "domain name for the deployed instances"
+  default = "f5demo.local"
+}
 
 variable "ubuntu_instance_count" {
-    description = "How many ubuntu instances do you want to start per AZ"
+    description = "How many ubuntu instances do you want to start"
     default = "1"
 }
 
@@ -56,13 +44,25 @@ variable "ubuntu_instance_name" {
     default = "Ubuntu-NGINX"
 }
 
+variable "ubuntu_nb_cpu" {
+  default = "2"
+}
+
+variable "ubuntu_memory" {
+  default = "1028"
+}
+
 ##
 ## Will influence F5 onboarding setup and which iControl Extension
 ## should be loaded by default
 ## 
 
-variable "f5_instance_type" {
-  default = "m5.xlarge"
+variable "f5_nb_cpu" {
+  default = "2"
+}
+
+variable "f5_memory" {
+  default = "4096"
 }
 
 variable "bigip_https_port" {
@@ -80,5 +80,4 @@ variable "AS3_URL" {
   default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.11.0/f5-appsvcs-3.11.0-3.noarch.rpm"
 }
 
-variable "app_tag_value" {}
 

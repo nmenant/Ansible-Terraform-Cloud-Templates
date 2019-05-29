@@ -9,7 +9,7 @@ Remarks - Terraform
 -------------------
 
 * make sure that your Azure credentials are set on your system (env variables): <https://docs.microsoft.com/en-us/azure/virtual-machines/linux/terraform-install-configure>
-* update terraform/terraform.tfvarsto deploy the infrastructure components acordingly (specifically the AllowedIPs to allow access from your public IP to your env). If you want more customization, you may check terraform/variables.tf 
+* update terraform/terraform.tfvars to deploy the infrastructure components acordingly (specifically the AllowedIPs to allow access from your public IP to your env). If you want more customization, you may check terraform/variables.tf 
 * do *terraform init* / *terraform get* / *terraform plan* / *terraform apply* to deploy your infrastructure
 * *terraform output* will give you the relevant public IPs related to your infrastructure.
 
