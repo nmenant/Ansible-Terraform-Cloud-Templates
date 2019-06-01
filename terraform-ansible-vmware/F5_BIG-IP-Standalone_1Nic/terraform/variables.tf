@@ -26,6 +26,10 @@ variable "vmware_f5_bigip_template_name" {}
 
 variable "vmware_ubuntu_template_name" {}
 
+variable "f5_instance_name" {}
+
+variable "ubuntu_instance_name" {}
+
 ##
 ## Ubuntu instance setup
 ## 
@@ -37,11 +41,6 @@ variable "domain_name" {
 variable "ubuntu_instance_count" {
     description = "How many ubuntu instances do you want to start"
     default = "1"
-}
-
-variable "ubuntu_instance_name" {
-    description = "Name for your Ubuntu instances"
-    default = "Ubuntu-NGINX"
 }
 
 variable "ubuntu_nb_cpu" {
@@ -65,7 +64,7 @@ variable "f5_memory" {
   default = "4096"
 }
 
-variable "bigip_https_port" {
+variable "f5_bigip_https_port" {
     description = "TCP Port use to access BIG-IP GUI or API"
     default = "8443"
 }
