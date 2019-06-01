@@ -24,14 +24,15 @@ module "vmware_F5_standalone_1nic" {
   owner                           = "${var.owner}-${var.project_name}"
   vmware_datacenter               = var.vmware_datacenter
   vmware_cluster                  = var.vmware_cluster
-  vmware_f5_bigip_template_name   = var.vmware_f5_template_name
+  vmware_f5_bigip_template_name   = var.vmware_f5_bigip_template_name
   vmware_f5_datastore             = var.vmware_f5_datastore
   vmware_f5_network_name          = var.vmware_f5_network_name
   ssh_public_key                  = var.ssh_public_key
   f5_instance_name                = var.f5_instance_name
   f5_nb_cpu                       = var.f5_nb_cpu
   f5_memory                       = var.f5_memory
-  bigip_https_port                = var.f5_bigip_https_port
+  DO_URL                          = var.DO_URL
+  AS3_URL                         = var.AS3_URL
 }
 
 /*

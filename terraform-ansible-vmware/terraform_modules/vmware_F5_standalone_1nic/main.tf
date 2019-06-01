@@ -6,7 +6,7 @@ data "vsphere_compute_cluster" "vmware_cluster" {
   datacenter_id = data.vsphere_datacenter.vmware_dc.id
 }
 data "vsphere_network" "f5_network" {
-  name          = var.vmware_ubuntu_network_name
+  name          = var.vmware_f5_network_name
   datacenter_id = data.vsphere_datacenter.vmware_dc.id
 }
 
@@ -34,7 +34,7 @@ data "template_file" "f5_bigip_onboard" {
 resource "vsphere_virtual_machine" "f5_vm" {
   # Define VM name using the resource count +1 making the first name server-01
   # except when an offset is used. If for example offset=1 the first name is server-02
-  name                  = "${var.f5_instance_name}-${format("%02d", count.index + 1)}"
+  name                  = "${var.f5_instance_name}-1"
   resource_pool_id      = data.vsphere_compute_cluster.vmware_cluster.resource_pool_id
   
   # Changed from example; datastore cluster instead of datastore
@@ -63,7 +63,7 @@ resource "vsphere_virtual_machine" "f5_vm" {
 
   vapp {
     properties = {
-      hostname    = "${var.f5_instance_name}${format("%02d", count.index + 1 )}"
+      hostname    = "${var.f5_instance_name}-1"
       public-keys = var.ssh_public_key
       user-data   = "${base64encode(data.template_file.f5_bigip_onboard.rendered)}"
     }

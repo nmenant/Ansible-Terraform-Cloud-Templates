@@ -38,3 +38,15 @@ variable libs_dir {
 variable onboard_log { 
   default = "/var/log/startup-script.log" 
 }
+
+variable "AS3_URL" {
+    type = "string"
+}
+
+variable "DO_URL" {
+    type = "string"
+}
+
+variable "f5_nb_instance" {
+  default = 1
+}

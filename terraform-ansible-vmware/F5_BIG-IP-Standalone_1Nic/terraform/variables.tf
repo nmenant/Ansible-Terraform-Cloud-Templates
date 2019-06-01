@@ -64,11 +64,6 @@ variable "f5_memory" {
   default = "4096"
 }
 
-variable "f5_bigip_https_port" {
-    description = "TCP Port use to access BIG-IP GUI or API"
-    default = "8443"
-}
-
 ## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
 variable "DO_URL" {
   default = "https://github.com/nmenant/Public-Cloud-Templates/raw/master/tools/f5-declarative-onboarding-1.4.0-1.noarch.rpm"
