@@ -20,6 +20,16 @@ data "vsphere_datastore" "ubuntu_datastore" {
   datacenter_id = data.vsphere_datacenter.vmware_dc.id
 }
 
+/*
+data "template_file" "ubuntu_cloud_init" {
+  template = "${file("./templates/ubuntu-cloud-init.tpl")}"
+
+  vars = {
+    ssh_public_key = "${var.ssh_public_key}"
+  }
+}
+*/
+
 resource "vsphere_virtual_machine" "ubuntu_vms" {
   count                 = var.ubuntu_instance_count
   
@@ -47,17 +57,19 @@ resource "vsphere_virtual_machine" "ubuntu_vms" {
     eagerly_scrub       = data.vsphere_virtual_machine.ubuntu_template.disks.0.eagerly_scrub
     thin_provisioned    = data.vsphere_virtual_machine.ubuntu_template.disks.0.thin_provisioned
   }
- 
+  
+  cdrom {
+    client_device = true
+  }
+
+  vapp {
+    properties = {
+      hostname    = "${var.ubuntu_instance_name}${format("%02d", count.index + 1 )}"
+      public-keys = var.ssh_public_key
+    }
+  }
+
   clone {
     template_uuid       = data.vsphere_virtual_machine.ubuntu_template.id
- 
-    customize {
-      linux_options {
-        # Define hostname using the resource count +1 making the first name server-01
-        # except when an offset is used. If for example offset=1 the first name is server-02
-        host_name       = "${var.ubuntu_instance_name}${format("%02d", count.index + 1 )}"
-        domain          = var.domain_name
-      }
-    }
   }
 }

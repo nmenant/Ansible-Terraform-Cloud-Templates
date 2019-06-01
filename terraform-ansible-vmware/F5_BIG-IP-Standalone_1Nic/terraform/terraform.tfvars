@@ -14,7 +14,7 @@ vmware_cluster                  = "Cluster-Nicolas"
 #VMWare specs for F5 BIG-IP Deployment
 vmware_f5_datastore             = "NAS_RAID0_1T"
 //vmware_f5_resource_pool         = ""
-vmware_f5_network_name          = "DPG_172_16_10_Vlan10"
+vmware_f5_network_name          = "DPG_10_101_0_Vlan10"
 
 #Your BIG-IP template needs a CD-Rom setup as client device to pass user-data successfully
 vmware_f5_bigip_template_name    = "Ubuntu-18.04-Template"
@@ -22,8 +22,8 @@ vmware_f5_bigip_template_name    = "Ubuntu-18.04-Template"
 #VMWare specs for ubuntu systems
 vmware_ubuntu_datastore         = "NAS_RAID0_1T"
 //vmware_ubuntu_resource_pool     = ""
-vmware_ubuntu_network_name      = "DPG_172_16_10_Vlan10"
-vmware_ubuntu_template_name     = "Ubuntu-18.04-Template"
+vmware_ubuntu_network_name      = "DPG_10_101_0_Vlan10"
+vmware_ubuntu_template_name     = "ubuntu-xenial-16.04-cloudimg"
 #Value assigned to the tag key Application - will be used for AS3 Service Discovery
 app_tag_value = "www-NGINX"
 
