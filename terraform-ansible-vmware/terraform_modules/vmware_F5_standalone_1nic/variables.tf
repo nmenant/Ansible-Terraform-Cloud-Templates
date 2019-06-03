@@ -46,7 +46,3 @@ variable "AS3_URL" {
 variable "DO_URL" {
     type = "string"
 }
-
-variable "f5_nb_instance" {
-  default = 1
-}

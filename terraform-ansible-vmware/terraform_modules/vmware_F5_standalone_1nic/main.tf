@@ -58,16 +58,17 @@ resource "vsphere_virtual_machine" "f5_vm" {
   }
   
   cdrom {
-    client_device = true
+    datastore_id        = data.vsphere_datastore.f5_datastore.id
+    path                = "configdrive.iso"
   }
 
-  vapp {
-    properties = {
-      hostname    = "${var.f5_instance_name}-1"
-      public-keys = var.ssh_public_key
-      user-data   = "${base64encode(data.template_file.f5_bigip_onboard.rendered)}"
-    }
-  }
+ # vapp {
+ #   properties = {
+ #     hostname    = "${var.f5_instance_name}-1"
+ #     public-keys = var.ssh_public_key
+ #     user-data   = "${base64encode(data.template_file.f5_bigip_onboard.rendered)}"
+ #   }
+ # }
 
   clone {
     template_uuid       = data.vsphere_virtual_machine.f5_template.id

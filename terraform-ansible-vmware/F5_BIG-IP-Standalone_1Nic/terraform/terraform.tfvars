@@ -18,7 +18,7 @@ vmware_f5_datastore             = "NAS_RAID0_1T"
 vmware_f5_network_name          = "DPG_10_101_0_Vlan10"
 
 #Your BIG-IP template needs a CD-Rom setup as client device to pass user-data successfully
-vmware_f5_bigip_template_name    = "Template-BIGIP-14.1.0-0.0.116-scsi"
+vmware_f5_bigip_template_name    = "PATCHED-BIGIP-14.1.0"
 
 #VMWare specs for ubuntu systems
 ubuntu_instance_name            = "Ubuntu-NGINX"
