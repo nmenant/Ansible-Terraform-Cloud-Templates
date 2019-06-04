@@ -6,7 +6,7 @@
       server: "{{ inventory_hostname }}"
       ssh_keyfile: "{{ SSH_KEY_PATH }}"
       transport: cli
-      user: admin
+      user: root
     commands: modify auth user admin password {{ ADMIN_PASSWORD }}
     validate_certs: no
   delegate_to: localhost
@@ -17,7 +17,7 @@
       server: "{{ inventory_hostname }}"
       ssh_keyfile: "{{ SSH_KEY_PATH }}"
       transport: cli
-      user: admin
+      user: root
     commands: run /util bash -c "touch /var/config/rest/iapps/enable"
     validate_certs: no
   delegate_to: localhost
