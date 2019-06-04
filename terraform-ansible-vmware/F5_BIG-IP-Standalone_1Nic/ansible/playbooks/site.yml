@@ -12,11 +12,20 @@
 
 - name: Onboarding BIG-IP
   hosts: F5_systems
+  vars:
+   - ansible_python_interpreter: "/usr/bin/python"
   gather_facts: false
   connection: ssh
 
   roles:
    - f5_onboarding
+
+- name: BIG-IP DO declaration
+  hosts: F5_systems
+  gather_facts: false
+
+  roles:
+   - f5_do_onboarding
 
 - name: BIG-IP AS3 declaration
   hosts: F5_systems

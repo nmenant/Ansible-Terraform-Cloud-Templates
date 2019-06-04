@@ -1,7 +1,7 @@
 ---
 
-- name: return motd to registered var
+- name: change default admin password
   command: tmsh modify auth user admin password {{ ADMIN_PASSWORD }}
 
-- name: return motd to registered var
+- name: enable iApps LX GUI
   command: touch /var/config/rest/iapps/enable
