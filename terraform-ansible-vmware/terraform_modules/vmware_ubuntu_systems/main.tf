@@ -72,4 +72,6 @@ resource "vsphere_virtual_machine" "ubuntu_vms" {
   clone {
     template_uuid       = data.vsphere_virtual_machine.ubuntu_template.id
   }
+
+  annotation            = var.app_tag_value
 }
