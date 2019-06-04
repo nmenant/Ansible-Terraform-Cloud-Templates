@@ -22,9 +22,9 @@
     bigip_auth_token: "{{ bigip_auth_response.json.token.token }}"
     
   ##
-  ## if the AS3 declaration takes time, may return a 202
+  ## if the DO declaration takes time, may return a 202
   ##
-- name: deploying AS3 service 
+- name: Send DO declaration 
   delegate_to: localhost
   uri:
     body: "{{ lookup('file', do_declaration_file_name) }}"
@@ -39,10 +39,10 @@
 
 
 ##
-## Deleting json file containing the AS3 declaration since it contains API credentials information
+## Deleting json file containing the DO declaration since it contains API credentials information
 ##
 
-- name: delete the AS3 declaration file
+- name: delete the DO declaration file
   file: 
     path: "{{ role_path }}/files/{{ do_declaration_file_name }}"
     state: absent
