@@ -2,7 +2,7 @@
 
 - name: prepare the DO declaration 
   vars:
-    F5_REGKEY_LICENCE:  "{{ lookup('env','AF5_REGKEY_LICENCE') }}"
+    F5_REGKEY_LICENCE:  "{{ lookup('env','F5_REGKEY_LICENCE') }}"
   template: src="{{ role_path }}/templates/{{ do_template_file_name }}" dest="{{ role_path }}/files/{{ do_declaration_file_name }}"
   delegate_to: localhost
 
