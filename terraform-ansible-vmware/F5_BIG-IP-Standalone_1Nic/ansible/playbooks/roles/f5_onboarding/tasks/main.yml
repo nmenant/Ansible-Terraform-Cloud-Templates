@@ -3,5 +3,8 @@
 - name: change default admin password
   command: tmsh modify auth user admin password {{ ADMIN_PASSWORD }}
 
+- name: change default root password
+  command: tmsh modify auth user root password {{ ADMIN_PASSWORD }}
+
 - name: enable iApps LX GUI
   command: touch /var/config/rest/iapps/enable
