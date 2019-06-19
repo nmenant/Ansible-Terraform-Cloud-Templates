@@ -71,7 +71,7 @@ variable "DO_URL" {
 
 ## Please check and update the latest AS3 URL from https://github.com/F5Networks/f5-appsvcs-extension/releases/latest 
 variable "AS3_URL" {
-  default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.11.0/f5-appsvcs-3.11.0-3.noarch.rpm"
+  default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.12.0/f5-appsvcs-3.12.0-5.noarch.rpm"
 }
 
 
