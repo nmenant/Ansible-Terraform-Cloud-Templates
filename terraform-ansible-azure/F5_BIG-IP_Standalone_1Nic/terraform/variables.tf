@@ -42,20 +42,11 @@ variable "f5_instance_type" {
   default     = "Standard_DS4_v2"
 }
 
-variable "f5_version" {
-  description = "BIG-IP Version"
-  default     = "latest"
-}
+variable "f5_version" {}
 
-variable "f5_image_name" {
-  description = "BIG-IP Image name"
-  default     = "f5-bigip-virtual-edition-200m-best-hourly"
-}
+variable "f5_image_name" {}
 
-variable "f5_product_name" {
-  description = "BIG-IP product name"
-  default     = "f5-big-ip-best"
-}
+variable "f5_product_name" {}
 
 ## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
 variable "DO_URL" {
