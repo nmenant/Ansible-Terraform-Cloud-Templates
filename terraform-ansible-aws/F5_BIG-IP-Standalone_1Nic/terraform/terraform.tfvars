@@ -17,7 +17,7 @@ f5_name_filter = "F5*BIGIP-14.1* PAYG*-*Best 200Mbps*"
 key_path = "/Users/menant/.ssh/id_rsa.pub"
 
 #Public IPs used to access your instances
-AllowedIPs = ["80.12.58.29/32","109.7.65.101/32","92.154.17.15/32", "92.151.103.40/32"]
+AllowedIPs = ["109.7.65.101/32","109.7.65.102/32"]
 
 #Value assigned to the tag key Application - will be used for AS3 Service Discovery
 app_tag_value = "www-NGINX"
