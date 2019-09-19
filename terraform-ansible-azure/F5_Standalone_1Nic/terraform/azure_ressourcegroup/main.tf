@@ -1,7 +1,7 @@
 resource "azurerm_resource_group" "azure_rg" {
   name = "${var.owner}-RG"
   location = "${var.azure_region}"
-  tags {
+  tags = {
     environment = "${var.owner}"
   }
 }
@@ -12,7 +12,7 @@ resource "azurerm_virtual_network" "azurerm_virtualnet" {
     location            = "${var.azure_region}"
     resource_group_name = "${azurerm_resource_group.azure_rg.name}"
 
-    tags {
+    tags = {
         environment = "Terraform Demo"
     }
 }

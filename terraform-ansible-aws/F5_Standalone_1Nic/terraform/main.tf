@@ -42,10 +42,10 @@ module "aws_ubuntu_systems" {
 
 data  "template_file" "ansible_inventory" {
     template = "${file("./templates/ansible_inventory.tpl")}"
-    vars {
+    vars = {
         aws_F5_public_ip  = "${module.aws_f5_standalone.f5_public_ip}" 
         aws_F5_private_ip = "${module.aws_f5_standalone.f5_private_ip}"
-        aws_ubuntu_data   = "${join("\n", "${module.aws_ubuntu_systems.ubuntu_public_ips}")}"
+        aws_ubuntu_data   = "${join("\n", flatten("${module.aws_ubuntu_systems.ubuntu_public_ips}"))}"
     }
 }
 resource "local_file" "ansible_inventory_file" {
@@ -55,7 +55,7 @@ resource "local_file" "ansible_inventory_file" {
 
 data  "template_file" "ansible_f5_vars" {
     template = "${file("./templates/ansible_f5_vars.tpl")}"
-    vars {
+    vars = {
       aws_tag_value  = "${var.app_tag_value}"
     }
 }
