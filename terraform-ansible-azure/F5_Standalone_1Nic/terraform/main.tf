@@ -51,10 +51,10 @@ module "azure_ubuntu_systems" {
 
 data  "template_file" "ansible_inventory" {
   template = "${file("./templates/ansible_inventory.tpl")}"
-  vars {
+  vars = {
     azure_F5_public_ip = "${module.azure_f5_standalone.f5_public_ip}" 
     azure_F5_private_ip = "${module.azure_f5_standalone.f5_private_ip}"
-    azure_ubuntu_data = "${join("\n", "${module.azure_ubuntu_systems.ubuntu_public_ips}")}"
+    azure_ubuntu_data = "${join("\n", flatten("${module.azure_ubuntu_systems.ubuntu_public_ips}"))}"
   }
 }
 
@@ -65,8 +65,8 @@ resource "local_file" "ansible_inventory_file" {
 
 data  "template_file" "ansible_f5_vars" {
   template = "${file("./templates/ansible_f5_vars.tpl")}"
-  vars {
-    azure_f5_pool_members = "${join("','", "${module.azure_ubuntu_systems.ubuntu_private_ips}")}"
+  vars = {
+    azure_f5_pool_members = "${join("','", flatten("${module.azure_ubuntu_systems.ubuntu_private_ips}"))}"
   }
 }
 resource "local_file" "ansible_f5_vars_file" {

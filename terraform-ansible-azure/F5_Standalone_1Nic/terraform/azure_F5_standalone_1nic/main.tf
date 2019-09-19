@@ -5,7 +5,7 @@ resource "azurerm_public_ip" "bigip1_public_ip" {
   resource_group_name       = "${var.azure_rg_name}"
   allocation_method         = "Dynamic"
 
-  tags {
+  tags = {
     Name           = "${var.owner}-bigip1-public-ip"
     owner          = "${var.owner}"
   }
@@ -26,7 +26,7 @@ resource "azurerm_network_interface" "bigip1_nic" {
     public_ip_address_id          = "${azurerm_public_ip.bigip1_public_ip.id}"
   }
 
-  tags {
+  tags = {
     Name           = "${var.owner}-bigip1-mgmt-nic"
     owner          = "${var.owner}"
   }
@@ -36,7 +36,7 @@ resource "azurerm_network_interface" "bigip1_nic" {
 data "template_file" "f5_bigip_onboard" {
   template = "${file("./templates/f5_onboard.tpl")}"
 
-  vars {
+  vars = {
     DO_URL          = "${var.DO_URL}"
     AS3_URL		      = "${var.AS3_URL}"
     libs_dir		    = "${var.libs_dir}"
@@ -97,7 +97,7 @@ resource "azurerm_virtual_machine" "f5-bigip1" {
     product       = "${var.f5_product_name}"
   }
 
-  tags {
+  tags = {
     Name           = "${var.owner}-f5bigip1"
     owner          = "${var.owner}"
   }
@@ -123,7 +123,7 @@ resource "azurerm_virtual_machine_extension" "f5-bigip1-run-startup-cmd" {
     }
   SETTINGS
 
-  tags {
+  tags = {
     Name           = "${var.owner}-f5-bigip1-startup-cmd"
     owner          = "${var.owner}"
   }
