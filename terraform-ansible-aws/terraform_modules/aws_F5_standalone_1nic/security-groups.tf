@@ -13,8 +13,8 @@ resource "aws_security_group" "f5_bigip_sg" {
 
   # MGMT
   ingress {
-    from_port   = "${var.bigip_https_port}"
-    to_port     = "${var.bigip_https_port}"
+    from_port   = var.bigip_https_port
+    to_port     = var.bigip_https_port
     protocol    = "tcp"
     cidr_blocks = var.AllowedIPs
   }
