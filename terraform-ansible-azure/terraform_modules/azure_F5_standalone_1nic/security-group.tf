@@ -1,7 +1,7 @@
 resource "azurerm_network_security_group" "bigip_sg" {
   name                = "${var.owner}-bigip-sg"
-  location            = "${var.azure_region}"
-  resource_group_name = "${var.azure_rg_name}"
+  location            = var.azure_region
+  resource_group_name = var.azure_rg_name
 
   security_rule {
     name                       = "allow_SSH"
@@ -70,6 +70,6 @@ resource "azurerm_network_security_group" "bigip_sg" {
 
   tags = {
     Name           = "${var.owner}-bigip-sg"
-    owner          = "${var.owner}"
+    owner          = var.owner
   }
 }
