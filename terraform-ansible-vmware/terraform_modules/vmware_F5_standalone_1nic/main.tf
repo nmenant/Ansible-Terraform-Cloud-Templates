@@ -21,7 +21,7 @@ data "vsphere_datastore" "f5_datastore" {
 }
 
 data "template_file" "f5_bigip_onboard" {
-  template = "${file("./templates/f5_onboard.tpl")}"
+  template = file("../../F5_BIG-IP-Standalone_1Nic/templates/f5_onboard.tpl")
 
   vars = {
     DO_URL          = var.DO_URL
