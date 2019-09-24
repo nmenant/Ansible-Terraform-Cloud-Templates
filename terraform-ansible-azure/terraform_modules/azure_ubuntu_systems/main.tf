@@ -1,11 +1,11 @@
 
 resource "azurerm_public_ip" "ubuntu_az1_publicips" {
-    count                        = "${var.ubuntu_instance_count}"
+    count                        = var.ubuntu_instance_count
     name                         = "${var.owner}-${var.ubuntu_instance_name}-az1-public-ip-${format("%02d", count.index+1)}"
-    location                     = "${var.azure_region}"
-    resource_group_name          = "${var.azure_rg_name}"
+    location                     = var.azure_region
+    resource_group_name          = var.azure_rg_name
     allocation_method            = "Static"
-    zones                        = ["${var.ubuntu_subnet_id_az1}"]
+    zones                        = [var.ubuntu_subnet_id_az1]
 
     tags = {
         environment = "${var.owner}"
@@ -13,53 +13,53 @@ resource "azurerm_public_ip" "ubuntu_az1_publicips" {
 }
 
 resource "azurerm_public_ip" "ubuntu_az2_publicips" {
-    count                        = "${var.ubuntu_instance_count}"
+    count                        = var.ubuntu_instance_count
     name                         = "${var.owner}-${var.ubuntu_instance_name}-az2-public-ip-${format("%02d", count.index+1)}"
-    location                     = "${var.azure_region}"
-    resource_group_name          = "${var.azure_rg_name}"
+    location                     = var.azure_region
+    resource_group_name          = var.azure_rg_name
     allocation_method            = "Static"
-    zones                        = ["${var.ubuntu_subnet_id_az2}"]
+    zones                        = [var.ubuntu_subnet_id_az2]
 
     tags = {
-        environment = "${var.owner}"
+        environment = var.owner
     }
 }
 
 resource "azurerm_network_interface" "ubuntu_az1_privatenics" {
-    count                         = "${var.ubuntu_instance_count}"
+    count                         = var.ubuntu_instance_count
     name                          = "${var.owner}-${var.ubuntu_instance_name}-az1-private-nic-${format("%02d", count.index+1)}"
-    location                      = "${var.azure_region}"
-    resource_group_name           = "${var.azure_rg_name}"
-    network_security_group_id     = "${azurerm_network_security_group.azure_ubuntu_sg.id}"
+    location                      = var.azure_region
+    resource_group_name           = var.azure_rg_name
+    network_security_group_id     = azurerm_network_security_group.azure_ubuntu_sg.id
 
     ip_configuration {
         name                          = "${var.owner}-${var.ubuntu_instance_name}-az1-private-ip-${format("%02d", count.index+1)}"
-        subnet_id                     = "${var.private_subnet1_id}"
+        subnet_id                     = var.private_subnet1_id
         private_ip_address_allocation = "Dynamic"
-        public_ip_address_id          = "${element(azurerm_public_ip.ubuntu_az1_publicips.*.id, count.index)}"
+        public_ip_address_id          = element(azurerm_public_ip.ubuntu_az1_publicips.*.id, count.index)
     }
 
     tags = {
-        environment = "${var.owner}"
+        environment = var.owner
     }
 }
 
 resource "azurerm_network_interface" "ubuntu_az2_privatenics" {
-    count                         = "${var.ubuntu_instance_count}"
+    count                         = var.ubuntu_instance_count
     name                          = "${var.owner}-${var.ubuntu_instance_name}-az2-private-nic-${format("%02d", count.index+1)}"
-    location                      = "${var.azure_region}"
-    resource_group_name           = "${var.azure_rg_name}"
-    network_security_group_id     = "${azurerm_network_security_group.azure_ubuntu_sg.id}"
+    location                      = var.azure_region
+    resource_group_name           = var.azure_rg_name
+    network_security_group_id     = azurerm_network_security_group.azure_ubuntu_sg.id
 
     ip_configuration {
         name                          = "${var.owner}-${var.ubuntu_instance_name}-az2-private-ip-${format("%02d", count.index+1)}"
-        subnet_id                     = "${var.private_subnet1_id}"
+        subnet_id                     = var.private_subnet1_id
         private_ip_address_allocation = "Dynamic"
-        public_ip_address_id          = "${element(azurerm_public_ip.ubuntu_az2_publicips.*.id, count.index)}"
+        public_ip_address_id          = element(azurerm_public_ip.ubuntu_az2_publicips.*.id, count.index)
     }
 
     tags = {
-        environment = "${var.owner}"
+        environment = var.owner
     }
 }
 
@@ -69,31 +69,31 @@ resource "azurerm_network_interface" "ubuntu_az2_privatenics" {
 resource "random_id" "randomId" {
     keepers = {
         # Generate a new ID only when a new resource group is defined
-        resource_group = "${var.azure_rg_name}"
+        resource_group = var.azure_rg_name
     }
     
     byte_length = 8
 }
 resource "azurerm_storage_account" "azure_storage_account" {
     name                = "diag${random_id.randomId.hex}"
-    resource_group_name = "${var.azure_rg_name}"
-    location            = "${var.azure_region}"
+    resource_group_name = var.azure_rg_name
+    location            = var.azure_region
     account_replication_type = "LRS"
     account_tier = "Standard"
 
     tags = {
-        environment = "${var.owner}"
+        environment = var.owner
     }
 }
 
 resource "azurerm_virtual_machine" "azure_az1_ubuntu_vm" {
-    count                 = "${var.ubuntu_instance_count}"
+    count                 = var.ubuntu_instance_count
     name                  = "${var.owner}-ubuntu-NGINX-az1-${format("%02d", count.index+1)}"
-    location              = "${var.azure_region}"
-    resource_group_name   = "${var.azure_rg_name}"
-    network_interface_ids = ["${element(azurerm_network_interface.ubuntu_az1_privatenics.*.id, count.index)}"]
-    vm_size               = "${var.ubuntu_instance_size}"
-    zones                  = ["${var.ubuntu_subnet_id_az1}"]
+    location              = var.azure_region
+    resource_group_name   = var.azure_rg_name
+    network_interface_ids = [element(azurerm_network_interface.ubuntu_az1_privatenics.*.id, count.index)]
+    vm_size               = var.ubuntu_instance_size
+    zones                  = [var.ubuntu_subnet_id_az1]
 
     # Uncomment this line to delete the OS disk automatically when deleting the VM
     delete_os_disk_on_termination = true
@@ -118,36 +118,36 @@ resource "azurerm_virtual_machine" "azure_az1_ubuntu_vm" {
 
     os_profile {
         computer_name  = "${var.owner}-ubuntu-NGINX-az1-${format("%02d", count.index+1)}"
-        admin_username = "${var.ubuntu_username}"
+        admin_username = var.ubuntu_username
     }
 
     os_profile_linux_config {
         disable_password_authentication = true
         ssh_keys {
             path     = "/home/azureuser/.ssh/authorized_keys"
-            key_data = "${var.public_key}"
+            key_data = var.public_key
         }
     }
 
     boot_diagnostics {
         enabled     = "true"
-        storage_uri = "${azurerm_storage_account.azure_storage_account.primary_blob_endpoint}"
+        storage_uri = azurerm_storage_account.azure_storage_account.primary_blob_endpoint
     }
 
     tags = {
-        environment = "${var.owner}"
-        Application = "${var.app_tag_value}"
+        environment = var.owner
+        Application = var.app_tag_value
     }
 }
 
 resource "azurerm_virtual_machine" "azure_az2_ubuntu_vm" {
-    count                 = "${var.ubuntu_instance_count}"
+    count                 = var.ubuntu_instance_count
     name                  = "${var.owner}-ubuntu-NGINX-az2-${format("%02d", count.index+1)}"
-    location              = "${var.azure_region}"
-    resource_group_name   = "${var.azure_rg_name}"
-    network_interface_ids = ["${element(azurerm_network_interface.ubuntu_az2_privatenics.*.id, count.index)}"]
-    vm_size               = "${var.ubuntu_instance_size}"
-    zones                  = ["${var.ubuntu_subnet_id_az2}"]
+    location              = var.azure_region
+    resource_group_name   = var.azure_rg_name
+    network_interface_ids = [element(azurerm_network_interface.ubuntu_az2_privatenics.*.id, count.index)]
+    vm_size               = var.ubuntu_instance_size
+    zones                  = [var.ubuntu_subnet_id_az2]
 
     storage_os_disk {
         name              = "${var.owner}-ubuntu-NGINX-Disk-az2${format("%02d", count.index+1)}"
@@ -172,17 +172,17 @@ resource "azurerm_virtual_machine" "azure_az2_ubuntu_vm" {
         disable_password_authentication = true
         ssh_keys {
             path     = "/home/azureuser/.ssh/authorized_keys"
-            key_data = "${var.public_key}"
+            key_data = var.public_key
         }
     }
 
     boot_diagnostics {
         enabled     = "true"
-        storage_uri = "${azurerm_storage_account.azure_storage_account.primary_blob_endpoint}"
+        storage_uri = azurerm_storage_account.azure_storage_account.primary_blob_endpoint
     }
 
     tags = {
-        environment = "${var.owner}"
-        Application = "${var.app_tag_value}"
+        environment = var.owner
+        Application = var.app_tag_value
     }
 }

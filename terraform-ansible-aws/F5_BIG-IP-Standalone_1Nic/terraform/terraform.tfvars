@@ -14,7 +14,7 @@ aws_az2 = "eu-west-1c"
 #F5 Image to deploy
 f5_name_filter = "F5*BIGIP-14.1* PAYG*-*Best 200Mbps*"
 #Public key to use to access the instances
-key_path = "/Users/menant/.ssh/id_rsa.pub"
+key_path = "~/.ssh/id_rsa.pub"
 
 #Public IPs used to access your instances
 AllowedIPs = ["109.7.65.101/32","109.7.65.102/32"]

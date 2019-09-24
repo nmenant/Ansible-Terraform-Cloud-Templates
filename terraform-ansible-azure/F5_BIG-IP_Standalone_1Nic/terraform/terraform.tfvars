@@ -4,10 +4,10 @@ owner = "NicoM"
 #Name of the project
 project_name = "TestTerraform"
 
-#AWS Region to use
+#Azure Region to use
 azure_region = "francecentral"
 
-#AWS AZ to use. Need 2
+#Azure AZ to use. Need 2
 azure_az1 = "1"
 azure_az2 = "2"
 
