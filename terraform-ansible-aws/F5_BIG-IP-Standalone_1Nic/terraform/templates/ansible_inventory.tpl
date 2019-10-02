@@ -10,5 +10,4 @@ ansible_python_interpreter=/usr/bin/python3
 ansible_user=ubuntu
 
 [F5_systems:vars]
-ansible_python_interpreter=/Users/menant/projects/python-virtualenv/myAnsible/bin/python
 ansible_user=admin
