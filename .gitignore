@@ -4,3 +4,7 @@ terraform.tfstate*
 f5_vault
 *.json
 site.retry
+azure_creds.sh
+ansible-test
+ansible.cfg
+tbd.md

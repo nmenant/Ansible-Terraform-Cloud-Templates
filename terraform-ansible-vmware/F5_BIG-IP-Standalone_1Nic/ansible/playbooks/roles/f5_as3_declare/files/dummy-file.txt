@@ -1,0 +1,2 @@
+# File used to force the "files" folder to be created also on Github.
+# Without this folder, the ansible AS3 declaration will fail
