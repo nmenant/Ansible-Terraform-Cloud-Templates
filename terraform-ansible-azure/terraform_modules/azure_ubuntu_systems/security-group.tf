@@ -1,7 +1,7 @@
 resource "azurerm_network_security_group" "azure_ubuntu_sg" {
     name                = "${var.owner}-ubuntu-SG"
-    location            = "${var.azure_region}"
-    resource_group_name = "${var.azure_rg_name}"
+    location            = var.azure_region
+    resource_group_name = var.azure_rg_name
     
     security_rule {
         name                       = "SSH_From_Outside"
@@ -23,7 +23,7 @@ resource "azurerm_network_security_group" "azure_ubuntu_sg" {
         protocol                   = "Tcp"
         source_port_range          = "*"
         destination_port_range     = "22"
-        source_address_prefixes    = ["${var.public_subnet1_cidr}","${var.private_subnet1_cidr}"]  
+        source_address_prefixes    = [var.public_subnet1_cidr, var.private_subnet1_cidr]  
         destination_address_prefix = "*"
     }
 
@@ -47,7 +47,7 @@ resource "azurerm_network_security_group" "azure_ubuntu_sg" {
         protocol                   = "Tcp"
         source_port_range          = "*"
         destination_port_range     = "80"
-        source_address_prefixes    = ["${var.public_subnet1_cidr}","${var.private_subnet1_cidr}"]
+        source_address_prefixes    = [var.public_subnet1_cidr, var.private_subnet1_cidr]
         destination_address_prefix = "*"
     }
 
@@ -71,7 +71,7 @@ resource "azurerm_network_security_group" "azure_ubuntu_sg" {
         protocol                   = "Tcp"
         source_port_range          = "*"
         destination_port_range     = "443"
-        source_address_prefixes    = ["${var.public_subnet1_cidr}","${var.private_subnet1_cidr}"]  
+        source_address_prefixes    = [var.public_subnet1_cidr, var.private_subnet1_cidr]  
         destination_address_prefix = "*"
     }
 }

@@ -1,5 +1,4 @@
 ---
-
 - name: Set BIG-IP admin password
   bigip_command:
     provider:

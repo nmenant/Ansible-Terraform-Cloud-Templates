@@ -7,7 +7,7 @@
       ssh_keyfile: "{{ SSH_KEY_PATH }}"
       transport: cli
       user: admin
-    commands: modify auth user admin password {{ ADMIN_PASSWORD }}
+    commands: modify auth user admin password {{ ADMIN_PASSWORD | regex_replace('!', '\!') | regex_escape('posix_basic') }}
     validate_certs: no
   delegate_to: localhost
 
