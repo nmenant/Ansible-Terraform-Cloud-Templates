@@ -4,15 +4,11 @@
     "persist": true,
     "declaration": {
         "class": "ADC",
-        "schemaVersion": "3.10.0",
-        "id": "demo-servicediscovery",
+        "schemaVersion": "3.0.0",
+        "id": "123abc",
         "label": "{{ as3_service_name }}",
-        "remark": "HTTPS with pool service-discovery",
+        "remark": "HTTPS with predictive-node pool",
         "updateMode": "selective",
-        "controls": {
-            "class": "Controls",
-            "logLevel": "debug"
-        },
         "{{ partition }}": {
             "class": "Tenant",
             "{{ as3_service_name }}": {
@@ -32,19 +28,13 @@
                     "monitors": [
                         "http"
                     ],
-                    "members": [{
-                        "servicePort": 80,
-                        "addressDiscovery": "aws",
-                        "updateInterval": 50,
-                        "tagKey": "{{APP_TAG_KEY}}",
-                        "tagValue": "{{APP_TAG_VALUE}}",
-                        "addressRealm": "private",
-                        "region": "eu-west-1",
-                        "accessKeyId": "{{AWS_ACCESSKEY_RO}}",
-                        "secretAccessKey": "{{AWS_SECRETKEY_RO}}",
-                        "credentialUpdate": false,
-                        "shareNodes": true
-                    }]
+                    "members": [
+                        {
+                            "servicePort": 80,
+                            "serverAddresses": {{ LIST_AS3_POOL_SERVERS }},
+                            "shareNodes": true
+                        }
+                    ]
                 },
                 "webtls": {
                     "class": "TLS_Server",
