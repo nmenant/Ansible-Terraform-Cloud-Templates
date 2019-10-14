@@ -1,5 +1,7 @@
 # Public-Cloud-Templates
 
+*** This repo is archived. It has moved here: https://github.com/f5devcentral/Ansible-Terraform-Cloud-Templates***
+
 This repo contains different kind of templates to use in Public Clouds:
 
 * Cloud formation templates
