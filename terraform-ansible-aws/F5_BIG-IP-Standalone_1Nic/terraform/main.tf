@@ -66,7 +66,7 @@ resource "local_file" "ansible_inventory_file" {
 data "template_file" "ansible_f5_vars" {
   template = file("./templates/ansible_f5_vars.tpl")
   vars = {
-    aws_tag_value = var.app_tag_value
+    aws_f5_pool_members = join("','", module.aws_ubuntu_systems.ubuntu_private_ips)
   }
 }
 
