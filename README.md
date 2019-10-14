@@ -1,6 +1,8 @@
 # Public-Cloud-Templates
 
-This repo contains different kind of templates to use in Public Clouds:
+This repo contains the following solution
 
-* Cloud formation templates
 * Terraform / Ansible solutions to deploy the infrastructure via Terraform and do Configuration management via Ansible. You need to use *Terraform 0.12*
+* Deployment to be done on a VMWare infrastructure
+
+Needs to be finalized
