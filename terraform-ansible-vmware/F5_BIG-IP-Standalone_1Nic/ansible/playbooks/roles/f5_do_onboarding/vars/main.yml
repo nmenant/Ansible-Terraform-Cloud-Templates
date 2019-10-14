@@ -1,7 +1,0 @@
----
-
-do_template_name: "device_onboarding_tmpl"
-
-#######DO declaration########
-do_template_file_name: "{{ do_template_name + '.j2'}}"
-do_declaration_file_name: "{{ do_template_name + '.json'}}"
