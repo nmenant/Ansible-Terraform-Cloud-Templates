@@ -46,7 +46,7 @@ module "azure_ubuntu_systems" {
   private_subnet1_cidr = module.azure_ressourcegroup.private_subnet1_cidr
 
   #  private_subnet2_cidr = "${module.aws_vpc.private_subnet2_cidr}"
-  public_key            = var.public_key
+  public_key            = file(pathexpand(var.key_path))
   azure_rg_name         = module.azure_ressourcegroup.azure_rg_name
   AllowedIPs            = var.AllowedIPs
   ubuntu_instance_count = var.ubuntu_instance_count
