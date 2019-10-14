@@ -11,8 +11,6 @@ variable "azure_region" {}
 
 variable "AllowedIPs" {}
 
-variable "public_key" {}
-
 variable "key_path" {}
 
 variable "azure_az1" {}

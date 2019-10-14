@@ -19,7 +19,17 @@ Remarks - Ansible
 * ansible/inventory/hosts will be created automatically by Terraform. *vs_ip* in the hosts file is the PRIVATE IP of your BIG-IP.
 * playbooks/group_vars/F5_systems/vars will list your ubuntu PRIVATE IPs (variable LIST_AS3_POOL_SERVERS). This is created automatically by Terraform
 * Update ansible/playbooks/group_vars/all file with the location of your private key
-* you should have a file called ansible/playbooks/group_vars/F5_systems/f5_vault. You need to create this file yourself to store your BIG-IP admin password.  Inside this file, the variable should be named VAULT_ADMIN_PASSWORD.
+* You MUST create a file called f5_vault in ansible/playbooks/group_vars/F5_systems. You need to create this file yourself to store the admin password that will be used on your BIG-IP. The corresponding variables name to setup is: VAULT_ADMIN_PASSWORD. Example of f5_vault file: 
+
+```yaml
+
+    ---
+
+    VAULT_ADMIN_PASSWORD: "myF5Password!"
+
+
+```
+
 * Once it's done, encrypt the file with the command *ansible-vault encrypt ansible/playbooks/group_vars/F5_systems/vault*
 * update your ansible roles accordingly
 * You can run *ansible-playbook -i inventory/hosts site.yml --ask-vault-pass*
