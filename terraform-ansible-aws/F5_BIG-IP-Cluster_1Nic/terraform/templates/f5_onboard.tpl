@@ -81,11 +81,12 @@ DO_URL='${DO_URL}'
 DO_FN=$(basename "$DO_URL")
 AS3_URL='${AS3_URL}'
 AS3_FN=$(basename "$AS3_URL")
-AS3_URL='${HA_URL}'
-AS3_FN=$(basename "$HA_URL")
+HA_URL='${HA_URL}'
+HA_FN=$(basename "$HA_URL")
 
 echo -e "\n"$(date) "Download Declarative Onboarding Pkg"
 curl -L -o ${libs_dir}/$DO_FN $DO_URL
+sleep 20
 
 echo -e "\n"$(date) "Download AS3 Pkg"
 curl -L -o ${libs_dir}/$AS3_FN $AS3_URL
