@@ -29,16 +29,41 @@ data "template_file" "f5_bigip_onboard" {
 
 #NIC that will be assigned to BIG-IP1 
 resource "aws_network_interface" "f5_bigip1_interface" {
-  subnet_id       = var.f5_subnet1_id
-  security_groups = [aws_security_group.f5_bigip_sg.id]
+  subnet_id         = var.f5_subnet1_id
+  security_groups   = [aws_security_group.f5_bigip_sg.id]
   private_ips_count = "3"
 }
 
 #NIC that will be assigned to BIG-IP2
 resource "aws_network_interface" "f5_bigip2_interface" {
-  subnet_id       = var.f5_subnet2_id
-  security_groups = [aws_security_group.f5_bigip_sg.id]
+  subnet_id         = var.f5_subnet2_id
+  security_groups   = [aws_security_group.f5_bigip_sg.id]
   private_ips_count = "3"
+}
+
+#Elastic IP to access BIG-IP1 Mgmt interface
+resource "aws_eip" "f5_bigip1_mgmt" {
+  vpc               = true
+  network_interface = aws_network_interface.f5_bigip1_interface.id
+
+   depends_on       = ["aws_instance.f5_bigip1"]
+}
+
+#Elastic IP to access BIG-IP2 Mgmt interface
+resource "aws_eip" "f5_bigip2_mgmt" {
+  vpc               = true
+  network_interface = aws_network_interface.f5_bigip2_interface.id
+
+  depends_on        = ["aws_instance.f5_bigip2"]
+}
+
+#Elastic IP to access BIG-IP1 App interface
+resource "aws_eip" "f5_bigip1_app" {
+  vpc                       = true
+  network_interface         = aws_network_interface.f5_bigip1_interface.id
+  associate_with_private_ip = sort(aws_network_interface.f5_bigip1_interface.private_ips)[1]
+
+  depends_on                = ["aws_instance.f5_bigip1"]
 }
 
 #Deploy F5 BIG-IP1 1 Nic Standalone

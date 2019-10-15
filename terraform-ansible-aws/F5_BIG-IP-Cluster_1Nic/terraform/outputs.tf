@@ -30,12 +30,19 @@ output "ubuntu_private_ips" {
   value = module.aws_ubuntu_systems.ubuntu_private_ips
 }
 
-output "f5_public_ips" {
-  value = module.aws_f5_cluster.f5_public_ips
+#Public IPS to reach F5 Mgmt Interface
+output "f5_public_ips_mgmt" {
+  value = module.aws_f5_cluster.f5_bigip_public_ips_mgmt
+  }
+
+#Public IP to reach the deployed app
+output "f5_public_ips_app" {
+  value = module.aws_f5_cluster.f5_bigip_public_ips_app
 }
 
-output "f5_private_ips" {
-  value = module.aws_f5_cluster.f5_private_ips
+#Private IPs related to the deployed app
+output "f5_private_ips_app" {
+  value = module.aws_f5_cluster.f5_bigip_private_ips_app
 }
 
 output "allowed_ips" {

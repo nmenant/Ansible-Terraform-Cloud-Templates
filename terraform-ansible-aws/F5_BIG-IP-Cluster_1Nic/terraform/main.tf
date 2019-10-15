@@ -51,19 +51,19 @@ module "aws_ubuntu_systems" {
   ubuntu_instance_name  = var.ubuntu_instance_name
 }
 
-data "template_file" "ansible_inventory" {
-  template = file("./templates/ansible_inventory.tpl")
-  vars = {
-    aws_F5_public_ip  = join("\n",module.aws_f5_cluster.f5_public_ips)
-    aws_F5_private_ip = join("\n",module.aws_f5_cluster.f5_private_ips)
-    aws_ubuntu_data   = join("\n",module.aws_ubuntu_systems.ubuntu_public_ips)
-  }
-}
+#data "template_file" "ansible_inventory" {
+#  template = file("./templates/ansible_inventory.tpl")
+#  vars = {
+#    aws_F5_public_ip  = module.aws_f5_cluster.f5_bigip1_public_ip_mgmt
+#    aws_F5_private_ip = module.aws_f5_cluster.f5_bigip1_public_ip_app
+#    aws_ubuntu_data   = join("\n",module.aws_ubuntu_systems.ubuntu_public_ips)
+#  }
+#}
 
-resource "local_file" "ansible_inventory_file" {
-  content  = data.template_file.ansible_inventory.rendered
-  filename = "../ansible/playbooks/inventory/hosts"
-}
+#resource "local_file" "ansible_inventory_file" {
+#  content  = data.template_file.ansible_inventory.rendered
+#  filename = "../ansible/playbooks/inventory/hosts"
+#}
 
 data "template_file" "ansible_f5_vars" {
   template = file("./templates/ansible_f5_vars.tpl")
