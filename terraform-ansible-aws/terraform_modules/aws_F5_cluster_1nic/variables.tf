@@ -41,6 +41,11 @@ variable DO_URL {
   type = "string"
 }
 
+variable HA_URL {
+  type = "string"
+}
+
+
 variable "f5_instance_type" {
   type = "string"
 }

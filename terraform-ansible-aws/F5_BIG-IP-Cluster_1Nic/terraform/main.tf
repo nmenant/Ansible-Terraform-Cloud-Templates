@@ -53,9 +53,9 @@ module "aws_ubuntu_systems" {
 data "template_file" "ansible_inventory" {
   template = file("./templates/ansible_inventory.tpl")
   vars = {
-    aws_F5_public_ip  = join("\n",module.aws_f5_standalone.f5_public_ip)
-    aws_F5_private_ip = join("\n",module.aws_f5_standalone.f5_private_ip)
-    aws_ubuntu_data   = join("\n", module.aws_ubuntu_systems.ubuntu_public_ips)
+    aws_F5_public_ip  = join("\n",module.aws_f5_cluster.f5_public_ips)
+    aws_F5_private_ip = join("\n",module.aws_f5_cluster.f5_private_ips)
+    aws_ubuntu_data   = join("\n",module.aws_ubuntu_systems.ubuntu_public_ips)
   }
 }
 

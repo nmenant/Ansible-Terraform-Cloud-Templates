@@ -30,12 +30,12 @@ output "ubuntu_private_ips" {
   value = module.aws_ubuntu_systems.ubuntu_private_ips
 }
 
-output "f5_public_ip" {
-  value = module.aws_f5_standalone.f5_public_ip
+output "f5_public_ips" {
+  value = module.aws_f5_cluster.f5_public_ips
 }
 
-output "f5_private_ip" {
-  value = module.aws_f5_standalone.f5_private_ip
+output "f5_private_ips" {
+  value = module.aws_f5_cluster.f5_private_ips
 }
 
 output "allowed_ips" {

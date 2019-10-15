@@ -81,7 +81,7 @@ variable "AS3_URL" {
 }
 
 variable "HA_URL" {
-  default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.13.2/f5-appsvcs-3.13.2-1.noarch.rpm"
+  default = "https://github.com/nmenant/Ansible-Terraform-Cloud-Templates/blob/terraform-0.12-aws-bigip-cluster/tools/develop-f5-cloud-failover-0.9.1-1.noarch.rpm?raw=true"
 }
 
 variable "app_tag_value" {}
