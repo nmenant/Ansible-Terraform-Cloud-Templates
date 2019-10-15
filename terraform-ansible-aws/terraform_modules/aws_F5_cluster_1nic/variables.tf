@@ -7,6 +7,9 @@ variable "aws_region" {
 variable "f5_subnet1_id" {
   type = "string"
 }
+variable "f5_subnet2_id" {
+  type = "string"
+}
 variable "key_name" {
   type = "string"
 }

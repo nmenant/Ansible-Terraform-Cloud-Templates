@@ -7,6 +7,7 @@ module "aws_f5_cluster" {
   aws_region        = var.aws_region
   vpc_id            = module.aws_vpc.vpc_default_id
   f5_subnet1_id     = module.aws_vpc.public_subnet1_id
+  f5_subnet2_id     = module.aws_vpc.public_subnet2_id
   key_name          = module.aws_vpc.key_name
   owner             = "${var.owner}-${var.project_name}"
   AllowedIPs        = var.AllowedIPs

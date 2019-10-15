@@ -1,4 +1,4 @@
-resource "aws_security_group_mgmt" "f5_bigip_sg_mgmt" {
+resource "aws_security_group" "f5_bigip_sg_mgmt" {
   name        = "${var.owner}-f5-sg"
   vpc_id      = var.vpc_id
   description = "${var.owner} F5 BIG-IP Security Group"

@@ -56,7 +56,7 @@ resource "aws_instance" "f5_bigip2" {
   associate_public_ip_address   = true
   key_name                      = var.key_name
   vpc_security_group_ids        = [aws_security_group.f5_bigip_sg_mgmt.id]
-  subnet_id                     = var.f5_subnet1_id
+  subnet_id                     = var.f5_subnet2_id
 
   root_block_device {
     delete_on_termination       = true
@@ -64,5 +64,27 @@ resource "aws_instance" "f5_bigip2" {
   user_data                     = data.template_file.f5_bigip_onboard.rendered
   tags = {
     Name                        = "${var.owner}-f5_bigip2"
+  }
+}
+
+#Add secondary IP to BIG-IP1 - used to access the App
+resource "aws_network_interface" "f5_bigip1_app_interface" {
+  subnet_id       = var.f5_subnet1_id
+  security_groups = [aws_security_group.f5_bigip_sg_app.id]
+
+  attachment {
+    instance     = aws_instance.f5_bigip1.id
+    device_index = 1
+  }
+}
+
+#Add secondary IP to BIG-IP2 - used to access the App
+resource "aws_network_interface" "f5_bigip2_app_interface" {
+  subnet_id       = var.f5_subnet2_id
+  security_groups = [aws_security_group.f5_bigip_sg_app.id]
+
+  attachment {
+    instance     = aws_instance.f5_bigip2.id
+    device_index = 1
   }
 }
