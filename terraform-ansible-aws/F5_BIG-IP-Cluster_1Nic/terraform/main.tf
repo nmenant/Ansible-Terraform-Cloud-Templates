@@ -51,19 +51,21 @@ module "aws_ubuntu_systems" {
   ubuntu_instance_name  = var.ubuntu_instance_name
 }
 
-#data "template_file" "ansible_inventory" {
-#  template = file("./templates/ansible_inventory.tpl")
-#  vars = {
-#    aws_F5_public_ip  = module.aws_f5_cluster.f5_bigip1_public_ip_mgmt
-#    aws_F5_private_ip = module.aws_f5_cluster.f5_bigip1_public_ip_app
-#    aws_ubuntu_data   = join("\n",module.aws_ubuntu_systems.ubuntu_public_ips)
-#  }
-#}
+data "template_file" "ansible_inventory" {
+  template = file("./templates/ansible_inventory.tpl")
+  vars = {
+    aws_f5_bigip1_mgmt_public_ip  = "${element (module.aws_f5_cluster.f5_bigip_public_ips_mgmt, 0)}"
+    aws_f5_bigip2_mgmt_public_ip  = "${element (module.aws_f5_cluster.f5_bigip_public_ips_mgmt, 1)}"
+    aws_f5_bigip1_app_private_ip  = "${element (module.aws_f5_cluster.f5_bigip_private_ips_app, 0)}"
+    aws_f5_bigip2_app_private_ip  = "${element (module.aws_f5_cluster.f5_bigip_private_ips_app, 1)}"
+    aws_ubuntu_data   = join("\n",module.aws_ubuntu_systems.ubuntu_public_ips)
+  }
+}
 
-#resource "local_file" "ansible_inventory_file" {
-#  content  = data.template_file.ansible_inventory.rendered
-#  filename = "../ansible/playbooks/inventory/hosts"
-#}
+resource "local_file" "ansible_inventory_file" {
+  content  = data.template_file.ansible_inventory.rendered
+  filename = "../ansible/playbooks/inventory/hosts"
+}
 
 data "template_file" "ansible_f5_vars" {
   template = file("./templates/ansible_f5_vars.tpl")
