@@ -1,4 +1,4 @@
-resource "aws_security_group" "f5_bigip_sg" {
+resource "aws_security_group_mgmt" "f5_bigip_sg_mgmt" {
   name        = "${var.owner}-f5-sg"
   vpc_id      = var.vpc_id
   description = "${var.owner} F5 BIG-IP Security Group"
@@ -19,22 +19,6 @@ resource "aws_security_group" "f5_bigip_sg" {
     cidr_blocks = var.AllowedIPs
   }
 
-  # HTTP
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = var.AllowedIPs
-  }
-
-  # HTTPS
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = var.AllowedIPs
-  }
-
   egress {
     from_port   = 0
     to_port     = 0
@@ -43,6 +27,6 @@ resource "aws_security_group" "f5_bigip_sg" {
   }
 
   tags = {
-    Name = "${var.owner}-f5-sg"
+    Name = "${var.owner}-f5-sg-mgmt"
   }
 }

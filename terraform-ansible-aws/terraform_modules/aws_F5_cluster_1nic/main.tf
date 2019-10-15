@@ -21,6 +21,7 @@ data "template_file" "f5_bigip_onboard" {
   vars = {
     DO_URL          = var.DO_URL
     AS3_URL		      = var.AS3_URL
+    HA_URL          = var.HA_URL
     libs_dir		    = var.libs_dir
     onboard_log		  = var.onboard_log
   }
@@ -34,7 +35,7 @@ resource "aws_instance" "f5_bigip1" {
   
   associate_public_ip_address   = true
   key_name                      = var.key_name
-  vpc_security_group_ids        = [aws_security_group.f5_bigip_sg.id]
+  vpc_security_group_ids        = [aws_security_group.f5_bigip_sg_mgmt.id]
   subnet_id                     = var.f5_subnet1_id
 
   root_block_device {
@@ -54,7 +55,7 @@ resource "aws_instance" "f5_bigip2" {
   
   associate_public_ip_address   = true
   key_name                      = var.key_name
-  vpc_security_group_ids        = [aws_security_group.f5_bigip_sg.id]
+  vpc_security_group_ids        = [aws_security_group.f5_bigip_sg_mgmt.id]
   subnet_id                     = var.f5_subnet1_id
 
   root_block_device {
@@ -63,17 +64,5 @@ resource "aws_instance" "f5_bigip2" {
   user_data                     = data.template_file.f5_bigip_onboard.rendered
   tags = {
     Name                        = "${var.owner}-f5_bigip2"
-  }
-}
-
-#Add secondary IP to BIG-IP1 - used to access the App
-resource "aws_network_interface" "test" {
-  subnet_id       = var.f5_subnet1_id
-  private_ips     = ["10.0.0.50"]
-  security_groups = ["${aws_security_group.web.id}"]
-
-  attachment {
-    instance     = "${aws_instance.test.id}"
-    device_index = 1
   }
 }
