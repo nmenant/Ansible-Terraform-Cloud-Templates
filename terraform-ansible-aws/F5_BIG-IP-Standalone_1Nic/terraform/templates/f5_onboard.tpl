@@ -81,19 +81,12 @@ DO_URL='${DO_URL}'
 DO_FN=$(basename "$DO_URL")
 AS3_URL='${AS3_URL}'
 AS3_FN=$(basename "$AS3_URL")
-HA_URL='${HA_URL}'
-HA_FN=$(basename "$HA_URL")
-
 
 echo -e "\n"$(date) "Download Declarative Onboarding Pkg"
 curl -L -o ${libs_dir}/$DO_FN $DO_URL
 
 echo -e "\n"$(date) "Download AS3 Pkg"
 curl -L -o ${libs_dir}/$AS3_FN $AS3_URL
-sleep 20
-
-echo -e "\n"$(date) "Download HA Pkg"
-curl -L -o ${libs_dir}/$HA_FN $HA_URL
 sleep 20
 
 # Copy the RPM Pkg to the file location
@@ -108,12 +101,6 @@ restcurl -X POST "shared/iapp/package-management-tasks" -d $DATA
 DATA="{\"operation\":\"INSTALL\",\"packageFilePath\":\"/var/config/rest/downloads/$AS3_FN\"}"
 echo -e "\n"$(date) "Install AS3 Pkg"
 restcurl -X POST "shared/iapp/package-management-tasks" -d $DATA
-
-# Install HA Pkg
-DATA="{\"operation\":\"INSTALL\",\"packageFilePath\":\"/var/config/rest/downloads/$HA_FN\"}"
-echo -e "\n"$(date) "Install HA Pkg"
-restcurl -X POST "shared/iapp/package-management-tasks" -d $DATA
-
 
 date
 echo "FINISHED STARTUP SCRIPT"
