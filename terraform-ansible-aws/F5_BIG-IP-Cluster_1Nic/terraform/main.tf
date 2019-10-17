@@ -58,7 +58,11 @@ data "template_file" "ansible_inventory" {
     aws_f5_bigip2_mgmt_public_ip  = "${element (module.aws_f5_cluster.f5_bigip_public_ips_mgmt, 1)}"
     aws_f5_bigip1_app_private_ip  = "${element (module.aws_f5_cluster.f5_bigip_private_ips_app, 0)}"
     aws_f5_bigip2_app_private_ip  = "${element (module.aws_f5_cluster.f5_bigip_private_ips_app, 1)}"
-    aws_ubuntu_data   = join("\n",module.aws_ubuntu_systems.ubuntu_public_ips)
+    aws_f5_bigip1_app_self_ip     = "${element (module.aws_f5_cluster.f5_bigip_selfips, 0)}"
+    aws_f5_bigip2_app_self_ip     = "${element (module.aws_f5_cluster.f5_bigip_selfips, 1)}"
+    aws_f5_bigip1_hostname        = "${element (module.aws_f5_cluster.f5_bigip_hostnames, 0)}"
+    aws_f5_bigip2_hostname        = "${element (module.aws_f5_cluster.f5_bigip_hostnames, 1)}"
+    aws_ubuntu_data               = join("\n",module.aws_ubuntu_systems.ubuntu_public_ips)
   }
 }
 
