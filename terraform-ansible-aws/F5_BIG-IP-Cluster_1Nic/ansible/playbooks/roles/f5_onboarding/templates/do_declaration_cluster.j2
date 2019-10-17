@@ -45,7 +45,7 @@
     		"type": "sync-failover",
     		"members": ["{{ BIGIP1_HOSTNAME }}", "{{ BIGIP2_HOSTNAME }}"],
     		"owner": "/Common/failoverGroup/members/0",
-    		"autoSync": true,
+    		"autoSync": false,
     		"saveOnAutoSync": false,
     		"networkFailover": true,
     		"fullLoadOnSync": false,

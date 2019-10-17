@@ -26,6 +26,16 @@ resource "aws_security_group" "f5_bigip_sg" {
     protocol    = "tcp"
     cidr_blocks = var.AllowedIPs
   }
+
+  #Network Failover
+  ingress {
+        from_port       = 1026
+        to_port         = 1026
+        protocol        = "udp"
+        cidr_blocks     = [var.public_subnet1_cidr, var.public_subnet2_cidr] 
+    }
+
+  #Allow communication within the network
   ingress {
         from_port       = 0
         to_port         = 65535

@@ -17,15 +17,19 @@
     url: "https://{{ inventory_hostname }}:{{ ADMIN_HTTPS_PORT }}/mgmt/shared/authn/login"
     status_code: 200
     validate_certs: no
-  register: bigip_auth_response
-  
+  register: bigip_auth_response 
+  until: bigip_auth_response is not failed
+  retries: 15
+  delay: 6
+  changed_when: false
+
 - name: assigning auth token to a variable 
   set_fact:
     bigip_auth_token: "{{ bigip_auth_response.json.token.token }}"
-    
-  ##
-  ## if the AS3 declaration takes time, may return a 202
-  ##
+
+##
+## if the AS3 declaration takes time, may return a 202
+##
 - name: deploying AS3 service 
   delegate_to: localhost
   uri:

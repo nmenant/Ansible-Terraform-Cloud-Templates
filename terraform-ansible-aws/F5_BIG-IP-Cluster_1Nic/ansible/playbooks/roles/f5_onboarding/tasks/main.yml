@@ -1,4 +1,9 @@
 ---
+
+##
+## Wait for BIG-IPs to be back online
+##
+
 - name: Set BIG-IP admin password
   bigip_command:
     provider:
@@ -36,7 +41,10 @@
     status_code: 200
     validate_certs: no
   register: bigip_auth_response
- 
+  until: bigip_auth_response is not failed
+  retries: 15
+  delay: 6
+  changed_when: false
 
 - name: assigning auth token to a variable
   set_fact:
@@ -60,7 +68,13 @@
     timeout: 120
 
 ##
-## Deleting json file containing the AS3 declaration since it contains API credentials information
+## Wait for BIG-IPs to be done provisioning modules and setup the cluster
+## 
+- pause:
+    minutes: 3
+
+##
+## Deleting json files
 ##
 
 - name: delete the do declaration file
@@ -68,3 +82,17 @@
     path: "{{ role_path }}/files/{{ do_declaration_file_name }}"
     state: absent
   delegate_to: localhost
+
+- name: restart restnoded
+  bigip_command:
+    provider:
+      server: "{{ inventory_hostname }}"
+      ssh_keyfile: "{{ SSH_KEY_PATH }}"
+      transport: cli
+      user: admin
+    commands: run /util bash -c "bigstart restart restnoded"
+    validate_certs: no
+  delegate_to: localhost
+
+- pause:
+    minutes: 2
