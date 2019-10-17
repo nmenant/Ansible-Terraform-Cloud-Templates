@@ -53,3 +53,9 @@ variable "f5_instance_type" {
   type = "string"
 }
 
+variable "public_subnet1_cidr" {
+  type = "string"
+}
+variable "public_subnet2_cidr" {
+  type = "string"
+}

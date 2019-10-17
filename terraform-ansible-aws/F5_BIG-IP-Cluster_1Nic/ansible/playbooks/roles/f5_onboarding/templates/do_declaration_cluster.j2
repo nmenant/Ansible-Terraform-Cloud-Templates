@@ -1,0 +1,63 @@
+{
+    "schemaVersion": "1.7.0",
+    "class": "Device",
+    "async": "true",
+    "label": "Onboard BIG-IP into an HA Pair",
+    "Common": {
+        "class": "Tenant",
+        "hostname": "{{ bigip_hostname }}",
+        "myProvisioning": {
+            "class": "Provision",
+            "ltm": "nominal",
+            "asm": "nominal"
+        },
+        "myNtp": {
+            "class": "NTP",
+            "servers": [
+                "0.pool.ntp.org",
+                "1.pool.ntp.org",
+                "2.pool.ntp.org"
+            ],
+            "timezone": "UTC"
+        },
+        "self_1nic": {
+            "class": "SelfIp",
+            "address": "{{ self_ip }}/24",
+            "vlan": "internal",
+            "allowService": "default"
+        },
+        "external_self": {
+            "class": "SelfIp",
+            "address": "{{ vs_ip }}/24",
+            "vlan": "internal",
+            "allowService": "default"
+        },
+        "configsync": {
+    		"class": "ConfigSync",
+    		"configsyncIp": "/Common/external_self/address"
+		},
+		"failoverAddress": {
+    		"class": "FailoverUnicast",
+    		"address": "/Common/external_self/address"
+		},
+		 "failoverGroup": {
+    		"class": "DeviceGroup",
+    		"type": "sync-failover",
+    		"members": ["{{ BIGIP1_HOSTNAME }}", "{{ BIGIP2_HOSTNAME }}"],
+    		"owner": "/Common/failoverGroup/members/0",
+    		"autoSync": true,
+    		"saveOnAutoSync": false,
+    		"networkFailover": true,
+    		"fullLoadOnSync": false,
+    		"asmSync": false
+		},
+		"trust": {
+    		 "class": "DeviceTrust",
+    		 "localUsername": "admin",
+    		 "localPassword": "{{ ADMIN_PASSWORD }}",
+    		 "remoteHost": "{{ bigip_peer }}",
+    		 "remoteUsername": "admin",
+    		 "remotePassword": "{{ ADMIN_PASSWORD }}"
+		}
+    }
+}

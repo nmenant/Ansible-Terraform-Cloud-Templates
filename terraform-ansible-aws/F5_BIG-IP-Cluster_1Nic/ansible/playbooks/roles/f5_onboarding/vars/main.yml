@@ -1,0 +1,8 @@
+---
+
+do_template_name: "do_declaration_cluster"
+
+#######DO parameters########
+do_template_file_name: "{{ do_template_name + '.j2'}}"
+do_declaration_file_name: "{{ bigip_hostname + '_' + do_template_name + '.json'}}"
+

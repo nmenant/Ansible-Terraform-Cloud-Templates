@@ -64,9 +64,6 @@ resource "aws_eip" "f5_bigip1_app" {
   associate_with_private_ip = "${tolist(aws_network_interface.f5_bigip1_interface.private_ips)[2]}"
 
   depends_on                = ["aws_instance.f5_bigip1"]
-  lifecycle {
-    ignore_changes          = [ "instance" ]
-  }
 }
 
 #Deploy F5 BIG-IP1 1 Nic Standalone

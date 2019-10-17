@@ -26,12 +26,25 @@ resource "aws_security_group" "f5_bigip_sg" {
     protocol    = "tcp"
     cidr_blocks = var.AllowedIPs
   }
+  ingress {
+        from_port       = 0
+        to_port         = 65535
+        protocol        = "tcp"
+        cidr_blocks     = [var.public_subnet1_cidr, var.public_subnet2_cidr] 
+    }
   # MGMT
   ingress {
     from_port   = var.bigip_https_port
     to_port     = var.bigip_https_port
     protocol    = "tcp"
     cidr_blocks = var.AllowedIPs
+  }
+  #ICMP
+  ingress {
+        from_port       = -1
+        to_port         = -1
+        protocol        = "icmp"
+        cidr_blocks     = [var.public_subnet1_cidr, var.public_subnet2_cidr]  
   }
 
   egress {
