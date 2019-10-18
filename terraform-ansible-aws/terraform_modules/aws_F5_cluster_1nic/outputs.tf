@@ -10,7 +10,7 @@ output "f5_bigip_private_ips" {
 }
 
 output "f5_bigip_private_ips_app" {
-  value = ["${tolist(aws_network_interface.f5_bigip1_interface.private_ips)[1] == aws_instance.f5_bigip1.private_ip ? tolist(aws_network_interface.f5_bigip1_interface.private_ips)[2] : tolist(aws_network_interface.f5_bigip1_interface.private_ips)[1]}","${tolist(aws_network_interface.f5_bigip2_interface.private_ips)[2] == aws_instance.f5_bigip2.private_ip ? tolist(aws_network_interface.f5_bigip2_interface.private_ips)[1] : tolist(aws_network_interface.f5_bigip2_interface.private_ips)[2]}"]
+  value = [ aws_eip.f5_bigip1_app.private_ip,"${tolist(aws_network_interface.f5_bigip2_interface.private_ips)[2] == aws_instance.f5_bigip2.private_ip ? tolist(aws_network_interface.f5_bigip2_interface.private_ips)[1] : tolist(aws_network_interface.f5_bigip2_interface.private_ips)[2]}"]
 }
 
 output "f5_bigip_hostnames" {

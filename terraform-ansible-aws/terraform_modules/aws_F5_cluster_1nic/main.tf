@@ -61,7 +61,7 @@ resource "aws_eip" "f5_bigip2_mgmt" {
 resource "aws_eip" "f5_bigip1_app" {
   vpc                       = true
   network_interface         = aws_network_interface.f5_bigip1_interface.id
-  associate_with_private_ip = "${tolist(aws_network_interface.f5_bigip1_interface.private_ips)[2]}"
+  associate_with_private_ip = "${tolist(aws_network_interface.f5_bigip1_interface.private_ips)[1] == aws_instance.f5_bigip1.private_ip ? tolist(aws_network_interface.f5_bigip1_interface.private_ips)[2] : tolist(aws_network_interface.f5_bigip1_interface.private_ips)[1]}"
 
   depends_on                = ["aws_instance.f5_bigip1"]
 }
