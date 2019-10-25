@@ -71,7 +71,7 @@
 ## Wait for BIG-IPs to be done provisioning modules and setup the cluster
 ## 
 - pause:
-    minutes: 3
+    minutes: 4
 
 ##
 ## Deleting json files
@@ -92,6 +92,8 @@
       user: admin
     commands: run /util bash -c "bigstart restart restnoded"
     validate_certs: no
+  vars:
+    ansible_command_timeout: 60
   delegate_to: localhost
 
 - pause:
