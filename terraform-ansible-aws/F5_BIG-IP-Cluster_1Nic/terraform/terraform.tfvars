@@ -1,5 +1,5 @@
 #Name of the owner of this deployment (no space)
-owner = "NicoM"
+owner = "Nico"
 
 #Name of the project
 project_name = "ExampleCloudTemplates"
@@ -17,7 +17,7 @@ f5_name_filter = "F5*BIGIP-14.1* PAYG*-*Best 25Mbps*"
 key_path = "~/.ssh/id_rsa.pub"
 
 #Public IPs used to access your instances
-AllowedIPs = ["109.7.65.101/32","109.7.65.102/32","92.151.105.23/32"]
+AllowedIPs = ["109.7.65.101/32","109.7.65.102/32","92.151.105.23/32", "185.20.63.25/32", "86.234.240.6/32", "86.234.229.140/32", "204.134.187.137/32"]
 
 #Value assigned to the tag key Application - will be used for AS3 Service Discovery
 app_tag_value = "www-NGINX"

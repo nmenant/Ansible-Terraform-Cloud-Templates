@@ -1,8 +1,8 @@
 #Name of the owner of this deployment (no space)
-owner = "NicoM"
+owner = "Nico"
 
 #Name of the project
-project_name = "ExampleCloudTemplates"
+project_name = "DemoForKrithika"
 
 #AWS Region to use
 aws_region = "eu-west-1"
@@ -17,7 +17,7 @@ f5_name_filter = "F5*BIGIP-14.1* PAYG*-*Best 25Mbps*"
 key_path = "~/.ssh/id_rsa.pub"
 
 #Public IPs used to access your instances
-AllowedIPs = ["109.7.65.101/32","109.7.65.102/32","92.151.105.23/32"]
+AllowedIPs = ["109.7.65.101/32","109.7.65.102/32","92.151.105.23/32", "62.161.205.57/32", "86.242.115.139/32"]
 
 #Value assigned to the tag key Application - will be used for AS3 Service Discovery
 app_tag_value = "www-NGINX"
